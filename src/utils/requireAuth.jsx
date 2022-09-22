@@ -6,7 +6,7 @@ const RequireAuth = ({ children, allowedRoles }) => {
 
   const { user } = useAuth().auth();
 
-  return user != null ? (
+  return (user?.role && allowedRoles.includes(user.role) ) ? (
     children
   ) : (
     <Navigate to="/unauthorized" state={{ from: location.pathname }}  replace />

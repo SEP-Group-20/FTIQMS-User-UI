@@ -9,6 +9,7 @@ import Unauthorized from "../pages/Unauthorized/Unauthorized";
 import NoPage from "../pages/Layout/NoPage/NoPage";
 import Contact from '../pages/Layout/Contact/Contact';
 import RequireAuth from '../utils/requireAuth';
+import {ADMIN,MANAGER} from "../utils/RolesList";
 
 export function Router() {
   return (
@@ -16,8 +17,8 @@ export function Router() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/login' element={<Login />} />
-        <Route path="/fuelStationManagerHome" element={<RequireAuth> <FuelStationManagerHome /> </RequireAuth> } />
-        <Route path="/adminHome" element={<RequireAuth><AdminHome /></RequireAuth>} />
+        <Route path="/fuelStationManagerHome" element={<RequireAuth allowedRoles={[MANAGER]}> <FuelStationManagerHome /> </RequireAuth> } />
+        <Route path="/adminHome" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />
