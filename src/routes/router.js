@@ -4,7 +4,6 @@ import React from "react";
 import AdminHome from "../views/admin/AdminHome";
 import FuelStationManagerHome from "../views/fuelStationManager/FuelStationManagerHome";
 
-import Register from "../pages/Layout/Register/Register";
 import Login from "../pages/Layout/Login/Login";
 import Unauthorized from "../pages/Unauthorized/Unauthorized";
 import NoPage from "../pages/Layout/NoPage/NoPage";
@@ -15,11 +14,11 @@ export function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/fuelStationManagerHome" element={<FuelStationManagerHome />} />
-        <Route path="/adminHome" element={<AdminHome />} />
-        <Route exact path="register" element={<Register />} />
-        <Route exact path='login' element={<Login />} />
-        <Route exact path='contact' element={<RequireAuth><Contact /></RequireAuth>} />
+        <Route exact path='/' element={<Login />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route path="/fuelStationManagerHome" element={<RequireAuth> <FuelStationManagerHome /> </RequireAuth> } />
+        <Route path="/adminHome" element={<RequireAuth><AdminHome /></RequireAuth>} />
+        <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />
       </Routes>
