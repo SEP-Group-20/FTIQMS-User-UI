@@ -6,9 +6,9 @@ import { Box, Stack } from '@mui/system';
 
 const FuelStationManagerHome = () => {
   return (
-    <Box>
+    <Box display="flex" flexDirection="column" sx={{minHeight: '100vh'}}>
       <Navbar/>
-      <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" justifyContent="space-between" flex={1} overflow="auto">
         <Sidebar />
         <Body />
       </Stack>
