@@ -19,7 +19,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { loginUser } from "../../services/AuthServices";
 import { useAuth } from "../../utils/auth";
-import {MANAGER,ADMIN} from "../../utils/RolesList";
+import { MANAGER, ADMIN } from "../../utils/RolesList";
 
 function Copyright(props) {
   return (
@@ -42,7 +42,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const { auth, setAuth,logout } = useAuth();
+  const { auth, setAuth, logout } = useAuth();
   const emailRef = useRef();
   const errRef = useRef();
   const location = useLocation();
@@ -65,10 +65,10 @@ export default function Login() {
       if (response.status === 200) {
         setAuth(response.data.accessToken);
 
-        var home="";
-        if(auth().user.role===MANAGER) home = "/fuelStationManagerHome";
-        else if(auth().user.role===ADMIN) home = "/adminHome";
-        else{
+        var home = "";
+        if (auth().user.role === MANAGER) home = "/fuelStationManagerHome";
+        else if (auth().user.role === ADMIN) home = "/adminHome";
+        else {
           throw new Error("InvalidAccountError");
           logout();
         }
@@ -139,24 +139,17 @@ export default function Login() {
               onChange={(e) => setPwd(e.target.value)}
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              
               sx={{ mt: 3, mb: 2 }}
             >
               Login
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  
-                </Link>
+                <Link href="#" variant="body2"></Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
