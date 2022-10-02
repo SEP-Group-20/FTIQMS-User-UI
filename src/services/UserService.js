@@ -18,4 +18,12 @@ const isEmailRegistered = (formData) => {
     });
 }
 
-export {getUserName, isEmailRegistered};
+const registerAdmin = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/registerAdmin",
+        data: formData,
+    });
+}
+
+export {getUserName, isEmailRegistered,registerAdmin};
