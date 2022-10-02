@@ -10,4 +10,12 @@ const getUserName = (formData) => {
     });
 };
 
-export {getUserName};
+const isEmailRegistered = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/isEmailRegistered",
+        data: formData,
+    });
+}
+
+export {getUserName, isEmailRegistered};
