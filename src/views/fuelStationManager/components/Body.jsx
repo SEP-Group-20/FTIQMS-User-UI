@@ -1,13 +1,15 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 
-const Body = () => {
+const Body = (props) => {
   return (
     <Box bgcolor="lightblue" flex={5} p={2} >
-      <Typography variant='h1' sx={{ display: "flex", justifyContent: "center"}}>
+      <Typography variant='h2' sx={{ display: "flex", justifyContent: "center"}}>
+        
         Welcome
         Fuel Station Manager
       </Typography>
+      {props.children}
     </Box>
   )
 }
