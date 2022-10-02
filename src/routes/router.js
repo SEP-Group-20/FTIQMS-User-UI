@@ -10,6 +10,7 @@ import NoPage from "../views/noPage/NoPage";
 import Contact from '../views/contact/Contact';
 import RequireAuth from '../utils/requireAuth';
 import {ADMIN,MANAGER} from "../utils/RolesList";
+import RegisterAdmin from "../views/admin/RegisterAdmin";
 
 export function Router() {
   return (
@@ -19,6 +20,7 @@ export function Router() {
         <Route exact path='/login' element={<Login />} />
         <Route path="/fuelStationManagerHome" element={ <FuelStationManagerHome /> } />
         <Route path="/adminHome" element={<AdminHome />} />
+        <Route path="/registerAdmin" element={<RegisterAdmin />} />
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />

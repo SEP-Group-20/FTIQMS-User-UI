@@ -77,7 +77,9 @@ export default function Login() {
       }
     } catch (err) {
       if (!err?.response) {
-        setErrMsg("No server response!");
+        if (err.message === "InvalidAccountError") {
+          setErrMsg("Something went wrong!");
+        } else setErrMsg("No server response!");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing Email or Password!");
       } else if (err.response?.status === 401) {
