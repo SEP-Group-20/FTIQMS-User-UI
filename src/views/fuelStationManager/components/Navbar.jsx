@@ -33,15 +33,15 @@ const Navbar = () => {
 
   const {auth} = useAuth();
 
-  const userNIC = auth().user.NIC;
+  const userEmail = auth().user.email;
 
   useEffect(() => {
     async function fetchusername() {
-      const userDetails = await getUserName({userNIC: userNIC});
+      const userDetails = await getUserName({userEmail: userEmail});
       setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
     }
     fetchusername();
-  }, [userNIC]);
+  }, [userEmail]);
   
   return (
     <AppBar position="sticky" sx={{background:"#d63447"}}>

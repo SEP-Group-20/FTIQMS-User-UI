@@ -168,8 +168,6 @@ function RegisterFuelStationForm() {
     setemailValidity(validateEmail(e.target.value));
   };
 
-  console.log(fuelStationDetails);
-
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2} >
       <Box bgcolor="#f5f4f0" flex={5} p={3} sx={{ borderRadius: '9px' }}>

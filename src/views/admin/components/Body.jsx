@@ -8,16 +8,15 @@ const Body = () => {
 
   const {auth} = useAuth();
 
-  // no nic get the email
-  // const userNIC = auth().user.NIC;
+  const userEmail = auth().user.email;
 
-  // useEffect(() => {
-  //   async function fetchusername() {
-  //     const userDetails = await getUserName({userNIC: userNIC});
-  //     setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
-  //   }
-  //   fetchusername();
-  // }, [userNIC]);
+  useEffect(() => {
+    async function fetchusername() {
+      const userDetails = await getUserName({userEmail: userEmail});
+      setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
+    }
+    fetchusername();
+  }, [userEmail]);
 
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2} >
@@ -25,7 +24,7 @@ const Body = () => {
         Welcome
       </Typography>
       <Typography variant='h2' sx={{ display: "flex", justifyContent: "center"}}>
-        {/* {username} */}
+        {username}
       </Typography>
     </Box>
   )

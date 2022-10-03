@@ -4,20 +4,19 @@ import { getUserName } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
 
 const FuelStationList = () => {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
-  const {auth} = useAuth();
+  // const {auth} = useAuth();
 
-  // no nic get the email
-  // const userNIC = auth().user.NIC;
+  // const userEmail = auth().user.email;
 
   // useEffect(() => {
   //   async function fetchusername() {
-  //     const userDetails = await getUserName({userNIC: userNIC});
+  //     const userDetails = await getUserName({userNIC: userEmail});
   //     setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
   //   }
   //   fetchusername();
-  // }, [userNIC]);
+  // }, [userEmail]);
 
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2} >
