@@ -33,16 +33,15 @@ const Navbar = () => {
 
   const {auth} = useAuth();
 
-  // no nic get the email
-  // const userNIC = auth().user.NIC;
+  const userEmail = auth().user.email;
 
-  // useEffect(() => {
-  //   async function fetchusername() {
-  //     const userDetails = await getUserName({userNIC: userNIC});
-  //     setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
-  //   }
-  //   fetchusername();
-  // }, [userNIC]);
+  useEffect(() => {
+    async function fetchusername() {
+      const userDetails = await getUserName({userEmail: userEmail});
+      setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
+    }
+    fetchusername();
+  }, [userEmail]);
   
   return (
     <AppBar position="sticky" sx={{background:"#d63447"}}>
@@ -51,7 +50,7 @@ const Navbar = () => {
 
         <Icons>
           <Typography variant='span'>
-            {/* {username} */}
+            {username}
           </Typography>
           <Avatar 
             sx={{width:30, height: 30}}
@@ -62,7 +61,7 @@ const Navbar = () => {
         <UserBox onClick={e=>setOpen(true)}>
           <Avatar sx={{width:30, height: 30}} />
           <Typography variant='span'>
-            {/* {username} */}
+            {username}
           </Typography>
         </UserBox>
 
