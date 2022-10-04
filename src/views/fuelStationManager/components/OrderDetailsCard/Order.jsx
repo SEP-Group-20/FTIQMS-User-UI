@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import index from '../OderDetailsTable/index';
+import { useNavigate } from "react-router-dom";
 
 import Grid from '@mui/material/Grid';
 
@@ -29,7 +31,12 @@ function selectType(type){
 
 
 
-export default function Home() {
+
+
+export default function Home({orderData}) {
+    const navigate = useNavigate();
+    // console.log(this.props);
+    const[orderview,setorderview] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -59,13 +66,16 @@ export default function Home() {
     
         const [open, setOpen] = React.useState(false);
 
-        const handleClick = () => {
-          setOpen(!open);
+        const handleBack = () => {
+
+            setorderview(true)
         };
 
 
     return (
         <div>
+            {!orderview && 
+
             <Container  component="main" Width="" sx={{     mt: 20,
                                                             background:'#ffffff4d', 
                                                             borderLeft: "1px solid #ffffff4d",
@@ -94,7 +104,9 @@ export default function Home() {
                                 Order ID
                             </Grid>
                             <Grid item xs={12} md={8} sx={{fontSize: '1.2rem'}}>
-                                : {OrderDetails['order_id']} 
+                                : { orderData.OrderId}
+                            
+                                {/* : {this.props.key} */}
                             </Grid>
 
                             <Grid item xs={12} md={4} sx={{fontSize: '1.2rem', fontWeight: 'bold'}}>
@@ -108,7 +120,7 @@ export default function Home() {
                                 Address
                             </Grid>
                             <Grid item xs={12} md={8} sx={{fontSize: '1.2rem'}}>
-                                : {OrderDetails['address']}
+                                : { orderData.EndStation}
                             </Grid>
 
                             <Grid item xs={12} md={4} sx={{fontSize: '1.2rem', fontWeight: 'bold'}}>
@@ -149,7 +161,12 @@ export default function Home() {
                                 Status
                             </Grid>
                             <Grid item xs={12} md={8} sx={{fontSize: '1.2rem'}}>
-                                {selectType(OrderDetails['status'])}
+                                {selectType(orderData.Status)}
+                            </Grid>
+                            <Grid item xs={12} md={8} sx={{fontSize: '1.2rem', fontWeight: 'bold'}}>
+                            <Button variant="contained" color="success" onClick={()=> {window.location.reload(false)}} >
+                                Back
+                            </Button>
                             </Grid>
                             </Grid>
                             
@@ -163,6 +180,8 @@ export default function Home() {
 
 
             </Container>
+            }
+             {orderview && <index/>}
         </div>
     );
 }

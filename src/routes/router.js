@@ -10,13 +10,18 @@ import NoPage from "../pages/Layout/NoPage/NoPage";
 import Contact from '../pages/Layout/Contact/Contact';
 import RequireAuth from '../utils/requireAuth';
 import {ADMIN,MANAGER} from "../utils/RolesList";
-import OrderDetails from '../views/fuelStationManager/components/Fsm_ViewOrderDetails'
+import OrderDetails from '../views/fuelStationManager/components/Fsm_ViewOrderDetails';
+import SearchUsers from '../views/admin/SearchUsers';
+import ViewAdmins from '../views/admin/ViewAdmins';
+import ViewFSM from '../views/admin/ViewFuelStationManager';
+
 
 // ===================Temporary Routes===================
 import Test_page from '../pages/testPage'
 import Table from '../views/fuelStationManager/components/OderDetailsTable/index'
 import Order from '../views/fuelStationManager/components/OrderDetailsCard/Order'
-
+import SearchAppBar from "../views/admin/components/Searchbar";
+import AdminsTable from "../views/admin/components/AdminsTable";
 
 export function Router() {
   return (
@@ -34,6 +39,11 @@ export function Router() {
         <Route exact path='table' element={<Table />} />
         <Route exact path='order' element={<Order />} />
         <Route exact path='orderDetails' element={<OrderDetails />} />
+        <Route exact path='admin/SearchAppBar' element={<SearchAppBar />} />
+        <Route exact path='admin/SearchUsers' element={<SearchUsers />} />
+        <Route exact path='admin/viewAdmins' element={<ViewAdmins/>} />
+        <Route exact path='admin/FuelStationManagerTable' element={<ViewFSM />} />
+
       </Routes>
     </BrowserRouter>
   );

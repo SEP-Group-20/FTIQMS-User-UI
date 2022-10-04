@@ -16,7 +16,7 @@ const Sidebar = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/">
+          <ListItemButton component="a" href="/admin/SearchUsers">
             <ListItemIcon>
               <Group />
             </ListItemIcon>

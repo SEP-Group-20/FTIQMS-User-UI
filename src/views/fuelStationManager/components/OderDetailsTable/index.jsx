@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import Order from '../OrderDetailsCard/Order';
 
 function createData(OrderId, EndStation, Status) {
   return {OrderId, EndStation, Status };
@@ -15,18 +17,18 @@ function createData(OrderId, EndStation, Status) {
 
 // ========================================= Handle Status ================================
 function selectType(type){
-  if (type == "Delivered"){
+  if (type === "Delivered"){
      return <TableCell align='center' color='green'><Button variant="outlined" color="success">
      Delivered
    </Button></TableCell>
-  }else if(type == "Pending"){
+  }else if(type === "Pending"){
     return <TableCell align='center' color='blue'><Button variant="outlined" >
     Pending
   </Button></TableCell>
   }
-  else if(type == "Cancelled"){
+  else if(type === "Cancelled"){
     return <TableCell align='center' color='red'><Button variant="outlined" color="error">
-    Canclled
+    Cancelled
   </Button></TableCell>
   }
 }
@@ -37,18 +39,35 @@ function viewData(id){
 }
 
 const rows = [
-  createData('0001', 159, 'Pending'),
-  createData('0002', 237, "Delivered"),
-  createData('0003', 262, 'Cancelled'),
-  createData('0004', 305, "Delivered"),
-  createData('0005', 356, "Delivered"),
+  createData('0001', 'Pinidiya,Matara', 'Pending'),
+  createData('0002','Godagama', "Delivered"),
+  createData('0003', 'Walgama', 'Cancelled'),
+  createData('0004', 'Pamburana', "Delivered"),
+  createData('0005',' Gabadaweediya', "Delivered"),
  
 ];
 
+
+
+
 export default function BasicTable() {
   const navigate = useNavigate();
-  return (
-    <TableContainer component={Paper} sx={{ m:5,width:'50%',borderLeft: "1px solid #ffffff4d"
+  // const[state,setstate] = useState(false)
+  const[dataview,setdataview] = useState(false)
+  const[itemdata,setitemdata] = useState({})
+
+  // const changeState = (item1,item2) =>{
+  //   setstate({key:item1,status:item2});
+   
+  // };
+
+  const handleClick= (value) =>{
+    setitemdata(value)
+    setdataview(true)
+  };
+  
+  return (<div>
+    {!dataview &&  <TableContainer component={Paper} sx={{ m:5,width:'50%',borderLeft: "1px solid #ffffff4d"
     ,borderTop: "1px solid #ffffff4d",
     backdropFilter: 'blur(10px)',
     boxShadow: '0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 )',
@@ -69,7 +88,9 @@ export default function BasicTable() {
             <TableRow
           a    
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
-              key={row.OrderId}
+              key_={row.OrderId}
+              status_= {row.Status}
+
             >
               {/* <TableCell component="th" scope="row">
                 {row.OrderId}
@@ -78,12 +99,19 @@ export default function BasicTable() {
               <TableCell align='center'>{row.EndStation}</TableCell>
               {selectType(row.Status)}
               {/* <TableCell align='center' color='red'>{row.Status}</TableCell> */}
-              <TableCell  align='center'> <Button variant="contained" onClick={()=>{navigate('/OrderDetails')}}>View</Button> </TableCell>
-             
+              <TableCell  align='center'> <Button variant="contained" onClick={()=>{handleClick(row)}}>View</Button></TableCell>
+              
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer>}
+    {dataview && <Order orderData={itemdata}/>}
+
+
+  </div>
+   
+            
   );
+
 }
