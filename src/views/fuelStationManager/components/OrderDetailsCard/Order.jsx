@@ -163,19 +163,12 @@ export default function Home({orderData}) {
                             <Grid item xs={12} md={8} sx={{fontSize: '1.2rem'}}>
                                 {selectType(orderData.Status)}
                             </Grid>
-                            <Grid item xs={12} md={8} sx={{fontSize: '1.2rem', fontWeight: 'bold'}}>
+                            <Grid item xs={12} md={12} sx={{fontSize: '2 rem', fontWeight: 'bold', placeItems: 'center'}}>
                             <Button variant="contained" color="success" onClick={()=> {window.location.reload(false)}} >
                                 Back
                             </Button>
                             </Grid>
-                            </Grid>
-                            
-                           
-                            
-
-                            
-                                      
-                        
+                            </Grid>    
                 </Box>
 
 

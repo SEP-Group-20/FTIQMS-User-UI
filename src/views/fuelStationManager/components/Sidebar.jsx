@@ -20,7 +20,7 @@ const Sidebar = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/">
+          <ListItemButton component="a" href="/viewOrders">
             <ListItemIcon>
               <LocalGasStation />
               <PlaylistAddCheck />
@@ -29,7 +29,7 @@ const Sidebar = () => {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/">
+          <ListItemButton component="a" href="/viewOrders">
             <ListItemIcon>
               <LocalGasStation />
             </ListItemIcon>
