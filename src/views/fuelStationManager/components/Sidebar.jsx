@@ -2,6 +2,11 @@ import { AccountBox, Home, LocalGasStation, PlaylistAddCheck } from '@mui/icons-
 import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
 
+const StyledToolBar = styled(Toolbar)({
+  display: "flex",
+  justifyContent: "space-between",
+});
+
 const Sidebar = () => {
   return (
     <Box bgcolor="#f57b51" flex={1} p={2}>
@@ -16,7 +21,7 @@ const Sidebar = () => {
         </ListItem>
         <Divider component="li" />
         <ListItem disablePadding>
-          <ListItemButton component="a" href="#">
+          <ListItemButton component="a" href="/viewOrders">
             <ListItemIcon>
               <LocalGasStation />
               <PlaylistAddCheck />
@@ -26,7 +31,7 @@ const Sidebar = () => {
         </ListItem>
         <Divider component="li" />
         <ListItem disablePadding>
-          <ListItemButton component="a" href="#">
+          <ListItemButton component="a" href="/viewOrders">
             <ListItemIcon>
               <LocalGasStation />
             </ListItemIcon>

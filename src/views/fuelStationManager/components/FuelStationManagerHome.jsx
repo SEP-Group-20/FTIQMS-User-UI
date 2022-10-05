@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import Body from './components/Body';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import Body from './Body';
 import { Box, Stack } from '@mui/system';
 
 const FuelStationManagerHome = () => {
