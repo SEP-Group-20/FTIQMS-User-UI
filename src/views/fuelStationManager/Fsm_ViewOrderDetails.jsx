@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
-import Body from './Body';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Body from './components/Body';
 import { Box, Stack } from '@mui/system';
-import Order from './OrderDetailsCard/Order';
+import Order from './components/OrderDetailsCard/Order';
 
 
 
