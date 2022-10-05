@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 
 import AdminHome from "../views/admin/AdminHome";
-import FuelStationManagerHome from "../views/fuelStationManager/components/FuelStationManagerHome";
 import Fsm_ViewOrders from "../views/fuelStationManager/components/Fsm_ViewOrders";
 import RequireAuth from '../utils/requireAuth';
 import {ADMIN,MANAGER} from "../utils/RolesList";
@@ -10,6 +9,7 @@ import OrderDetails from '../views/fuelStationManager/components/Fsm_ViewOrderDe
 import SearchUsers from '../views/admin/SearchUsers';
 import ViewAdmins from '../views/admin/ViewAdmins';
 import ViewFSM from '../views/admin/ViewFuelStationManager';
+import FuelStationManagerHome from "../views/fuelStationManager/FuelStationManagerHome";
 import Login from "../views/login/Login";
 import Unauthorized from "../views/unauthorized/Unauthorized";
 import NoPage from "../views/noPage/NoPage";
