@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
-// import Login from "../views/login/Login";
+
 import AdminHome from "../views/admin/AdminHome";
 import FuelStationManagerHome from "../views/fuelStationManager/FuelStationManagerHome";
-
 import Login from "../views/login/Login";
 import Unauthorized from "../views/unauthorized/Unauthorized";
 import NoPage from "../views/noPage/NoPage";
