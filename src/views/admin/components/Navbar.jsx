@@ -1,8 +1,10 @@
-import { Notifications } from '@mui/icons-material';
-import { AppBar, Avatar, Badge, Box, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { AppBar, Avatar, Box, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { getUserName } from '../../../services/UserService';
+import { useAuth } from '../../../utils/auth';
 
 const StyledToolBar = styled(Toolbar)({
+  bgcolor:"#d63447",
   display: "flex",
   justifyContent: "space-between",
 });
@@ -27,18 +29,28 @@ const UserBox = styled(Box)(( {theme} ) => ({
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
+  const {auth} = useAuth();
+
+  const userEmail = auth().user.email;
+
+  useEffect(() => {
+    async function fetchusername() {
+      const userDetails = await getUserName({userEmail: userEmail});
+      setUsername(userDetails.data.user.firstName + " " + userDetails.data.user.lastName );
+    }
+    fetchusername();
+  }, [userEmail]);
   
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{background:"#d63447"}}>
       <StyledToolBar>
         <Typography variant='h5'>Fuel Token Issuer and Queue Management System</Typography>
 
         <Icons>
-          <Badge badgeContent={4} color="error" component="a" href="/">
-            <Notifications/>
-          </Badge>
           <Typography variant='span'>
-            Thivindu
+            {username}
           </Typography>
           <Avatar 
             sx={{width:30, height: 30}}
@@ -49,7 +61,7 @@ const Navbar = () => {
         <UserBox onClick={e=>setOpen(true)}>
           <Avatar sx={{width:30, height: 30}} />
           <Typography variant='span'>
-            Thivindu
+            {username}
           </Typography>
         </UserBox>
 
@@ -70,8 +82,8 @@ const Navbar = () => {
           horizontal: 'right',
         }}
       >
-        <MenuItem component="a" href="/">Profile</MenuItem>
-        <MenuItem component="a" href="/">Logout</MenuItem>
+        <MenuItem component="a" href="#">Profile</MenuItem>
+        <MenuItem component="a" href="#">Logout</MenuItem>
       </Menu>
     </AppBar>
   )
