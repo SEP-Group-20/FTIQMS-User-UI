@@ -64,8 +64,8 @@ export default function Login() {
         setAuth(response.data.accessToken);
 
         var home = "";
-        if (auth().user.role === MANAGER) home = "/fuelStationManagerHome";
-        else if (auth().user.role === ADMIN) home = "/adminHome";
+        if (auth().user.role === MANAGER) home = "/fuelStationManager/home";
+        else if (auth().user.role === ADMIN) home = "/admin/home";
         else {
           throw new Error("InvalidAccountError");
           logout();
