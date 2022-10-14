@@ -60,9 +60,6 @@ const Navbar = () => {
 
         <UserBox onClick={e=>setOpen(true)}>
           <Avatar sx={{width:30, height: 30}} />
-          <Typography variant='span'>
-            {username}
-          </Typography>
         </UserBox>
 
       </StyledToolBar>

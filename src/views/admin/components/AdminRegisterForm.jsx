@@ -81,7 +81,7 @@ const AdminRegisterForm = () => {
           lastName: data.get("lastName"),
         });
         if (response.status === 201) {
-          navigate("/adminHome", { replace: true });
+          navigate("/admin/home", { replace: true });
           return;
         }
       } catch (err) {
@@ -102,92 +102,94 @@ const AdminRegisterForm = () => {
 
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2}>
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              marginTop: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              REGISTER NEW ADMIN
-            </Typography>
-            {errMsg != "" ? (
-              <Stack sx={{ width: "100%" }} spacing={2}>
-                <Alert severity="error">{errMsg}</Alert>
-              </Stack>
-            ) : null}
+      <Box bgcolor="#f5f4f0" flex={5} p={3} sx={{ borderRadius: '9px' }}>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
             <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
+              sx={{
+                marginTop: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                error={emailErr ? true : false}
-                onChange={() => {
-                  setErrMsg("");
-                  setEmailError(false);
-                }}
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="firstName"
-                label="First Name"
-                type="name"
-                id="firstName"
-                error={fNameErr ? true : false}
-                onChange={() => {
-                  setErrMsg("");
-                  setFNameErr(false);
-                }}
-                autoComplete="name"
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="lastName"
-                label="Last Name"
-                type="name"
-                id="lastName"
-                error={lNameErr ? true : false}
-                onChange={() => {
-                  setErrMsg("");
-                  setLNameErr(false);
-                }}
-                autoComplete="name"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                REGISTER NEW ADMIN
+              </Typography>
+              {errMsg != "" ? (
+                <Stack sx={{ width: "100%" }} spacing={2}>
+                  <Alert severity="error">{errMsg}</Alert>
+                </Stack>
+              ) : null}
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                sx={{ mt: 1 }}
               >
-                CONFIRM
-              </Button>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  error={emailErr ? true : false}
+                  onChange={() => {
+                    setErrMsg("");
+                    setEmailError(false);
+                  }}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="firstName"
+                  label="First Name"
+                  type="name"
+                  id="firstName"
+                  error={fNameErr ? true : false}
+                  onChange={() => {
+                    setErrMsg("");
+                    setFNameErr(false);
+                  }}
+                  autoComplete="name"
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="lastName"
+                  label="Last Name"
+                  type="name"
+                  id="lastName"
+                  error={lNameErr ? true : false}
+                  onChange={() => {
+                    setErrMsg("");
+                    setLNameErr(false);
+                  }}
+                  autoComplete="name"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  CONFIRM
+                </Button>
+              </Box>
             </Box>
-          </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
-        </Container>
-      </ThemeProvider>
+            <Copyright sx={{ mt: 8, mb: 4 }} />
+          </Container>
+        </ThemeProvider>
+      </Box>
     </Box>
   );
 };

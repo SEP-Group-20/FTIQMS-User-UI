@@ -3,21 +3,11 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Avatar, Badge, Menu, MenuItem} from '@mui/material';
+import { ButtonGroup} from '@mui/material';
 import  { useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import adminTable from './AdminsTable'
-import { useNavigate } from "react-router-dom";
-
-
-
-
-
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -44,76 +34,38 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-
-
 export default function SearchAppBar() {
-    const navigate = useNavigate();
-    const [isShown, setIsShown] = useState(false);
-  
-    const handleClick = event => {
-      // 👇️ toggle shown state
-      setIsShown(current => !current);
-  
-      // 👇️ or simply set it to true
-      // setIsShown(true);
-    };
-    const [open, setOpen] = useState(false);
-  return (
+  // const navigate = useNavigate();
+  // const [isShown, setIsShown] = useState(false);
 
-   
-    <Box sx={{ flexGrow: 1 }}>
+  // const handleClick = event => {
+  //   // 👇️ toggle shown state
+  //   setIsShown(current => !current);
+
+  //   // 👇️ or simply set it to true
+  //   // setIsShown(true);
+  // };
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Box bgcolor="#d1cebd" flex={5}>
+      <ButtonGroup variant="text" aria-label="text button group" fullWidth>
+        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
+        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/FuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
+      </ButtonGroup>
+
       <AppBar position="static">
         <Toolbar>
-          
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Enter User Type
-          </Typography>
-       
-          <Stack spacing={2} direction="row">
-          <Search onClick={e=>setOpen(true)}>
-            <SearchIconWrapper>
-              <SearchIcon />
-              <Button variant="text">Search Here</Button>
-            </SearchIconWrapper>
-            
-            {/* <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}> 
-              </StyledInputBase> */}
-          </Search>
-          <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-       
-        open={open}
-        onClose={e=>setOpen(false)}
-
-        anchorReference="anchorPosition"
-  anchorPosition={{ top: 200, left: 1300 }}
-  anchorOrigin={{
-    vertical: 'top',
-    horizontal: 'center',
-  }}
-  transformOrigin={{
-    vertical: 'top',
-    horizontal: 'left',
-  }}
-      >
-
-        <MenuItem >
-        <Button variant="text" onClick ={()=>{navigate('/admin/viewAdmins')}}> Admins</Button></MenuItem>
-        <MenuItem >
-        <Button variant="text" onClick ={()=>{navigate('/admin/FuelStationManagerTable')}}>Fuel Station Managers</Button></MenuItem>
-      </Menu>
-          </Stack>
+            {/* TODO: Search bar */}
+            <Search onClick={e=>setOpen(true)}>
+              <SearchIconWrapper>
+                <SearchIcon />
+                <Button variant="text">Search User...</Button>
+              </SearchIconWrapper>
+            </Search>
         </Toolbar>
-       
       </AppBar>
+      
     </Box>
   );
 }

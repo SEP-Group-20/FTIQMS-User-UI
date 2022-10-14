@@ -9,12 +9,7 @@ const RegisterAdmin = () => {
   return (
     <Box display="flex" flexDirection="column" sx={{ minHeight: "100vh" }}>
       <Navbar />
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        flex={1}
-        overflow="auto"
-      >
+      <Stack direction="row" justifyContent="space-between" flex={1} overflow="auto">
         <Sidebar />
         <AdminRegisterForm />
       </Stack>
