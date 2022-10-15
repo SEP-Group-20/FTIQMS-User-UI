@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import index from '../OderDetailsTable/index';
+import index from '../OrderDetailsTable/OrderDetails';
 import { useNavigate } from "react-router-dom";
 
 import Grid from '@mui/material/Grid';
