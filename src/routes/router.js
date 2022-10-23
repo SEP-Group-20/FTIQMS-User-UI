@@ -5,7 +5,6 @@ import AdminHome from "../views/admin/AdminHome";
 import FSMViewOrders from "../views/fuelStationManager/FSMViewOrders";
 import RequireAuth from '../utils/requireAuth';
 import {ADMIN,MANAGER} from "../utils/RolesList";
-import OrderDetails from '../views/fuelStationManager/FSMViewOrderDetails';
 import SearchUsers from '../views/admin/SearchUsers';
 import ViewAdmins from '../views/admin/ViewAdmins';
 import ViewFSM from '../views/admin/ViewFuelStationManager';
@@ -43,8 +42,6 @@ export function Router() {
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />
-        <Route exact path='orderDetails' element={<OrderDetails />} />
-
 
       </Routes>
     </BrowserRouter>

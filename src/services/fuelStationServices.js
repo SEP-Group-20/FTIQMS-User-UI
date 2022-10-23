@@ -66,6 +66,14 @@ const registerFuelStation = (formData) => {
     });
 };
 
+const getAllFuelDeliveryDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAllFuelDeliveryDetails",
+        data: formData,
+    });
+};
+
 export {isFuelStationRegistered,
         isFuelStationReal,
         getFuelStationDetailsMFE,
@@ -73,5 +81,6 @@ export {isFuelStationRegistered,
         getFuelStationDetails,
         getFuelDetails,
         setFuelStatus,
-        registerFuelStation
+        registerFuelStation,
+        getAllFuelDeliveryDetails
 };

@@ -26,4 +26,25 @@ const registerAdmin = (formData) => {
     });
 }
 
-export {getUserName, isEmailRegistered,registerAdmin};
+const getAllAdminDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAllAdminDetails",
+        data: formData,
+    });
+};
+
+const getAllFSMDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAllFSMDetails",
+        data: formData,
+    });
+};
+
+export {getUserName,
+        isEmailRegistered,
+        registerAdmin,
+        getAllAdminDetails,
+        getAllFSMDetails
+};

@@ -48,7 +48,7 @@ export default function SearchAppBar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box bgcolor="#d1cebd" flex={5}>
+    <Box bgcolor="#d1cebd">
       <ButtonGroup variant="text" aria-label="text button group" fullWidth>
         <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
         <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/FuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
