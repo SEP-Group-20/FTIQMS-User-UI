@@ -75,15 +75,13 @@ export default function Login() {
       }
     } catch (err) {
       if (!err?.response) {
-        if (err.message === "InvalidAccountError") {
-          setErrMsg("Something went wrong!");
-        } else setErrMsg("No server response!");
+        setErrMsg("Something went wrong!");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing Email or Password!");
       } else if (err.response?.status === 401) {
         setErrMsg("Invalid username, password pair!");
       } else {
-        setErrMsg("Login Failed!");
+        setErrMsg("No server response!");
       }
     }
   };
