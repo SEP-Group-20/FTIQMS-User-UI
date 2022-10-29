@@ -18,6 +18,7 @@ import FuelStations from "../views/admin/FuelStations";
 import RegisterFuelStation from "../views/admin/RegisterFuelStation";
 import AddFuelDelivery from "../views/fuelStationManager/AddFuelDelivery";
 import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
+import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
 
 export function Router() {
   return (
@@ -30,6 +31,7 @@ export function Router() {
         <Route path='/fuelStationManager/viewOrders' element={<RequireAuth allowedRoles={[MANAGER]}><FSMViewOrders /></RequireAuth>}/>
         <Route path='/fuelStationManager/fuelStatus' element={<RequireAuth allowedRoles={[MANAGER]}><FSMFuelStatus /></RequireAuth>}/>
         <Route path='/fuelStationManager/addFuelDelivery' element={<RequireAuth allowedRoles={[MANAGER]}><AddFuelDelivery /></RequireAuth>}/>
+        <Route path='/fuelStationManager/location' element={<RequireAuth allowedRoles={[MANAGER]}><LocationSetter /></RequireAuth>}/>
 
         <Route path="/admin/home" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
         <Route path="/admin/registerAdmin" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterAdmin /></RequireAuth>} />

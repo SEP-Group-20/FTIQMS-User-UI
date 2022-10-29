@@ -70,7 +70,16 @@ export default function Login() {
           throw new Error("InvalidAccountError");
           logout();
         }
-        const from = location.state?.from || home;
+        var from;
+        if(location.state?.from){
+          console.log(location.state.from);
+          if(location.state?.from.startsWith("/admin")) {
+            console.log("Hi");
+            from = home;
+          }else from = location.state.from;
+        }else{
+          from = home;
+        }
         navigate(from, { replace: true });
       }
     } catch (err) {
