@@ -7,7 +7,15 @@ const loginUser = (formData) => {
         method: "post",
         url: APIEndPoint + "/login",
         data: formData,
+        withoutToken: true,
     });
 };
 
-export {loginUser};
+const logoutBackend = () => {
+    return axios({
+        method: "get",
+        url: APIEndPoint + "/logout"
+    });
+};
+
+export {loginUser,logoutBackend};
