@@ -35,6 +35,7 @@ axiosInstance.interceptors.request.use(async (req) => {
         }
 
         try {
+            console.log("Refresh block reached!");
             const user = Token.getAuth()
             // refresh token in cookie get the request
             const response = await Axios({
