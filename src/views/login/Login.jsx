@@ -74,7 +74,7 @@ export default function Login() {
         if (location.state?.from) {
           console.log("Form: ", location.state.from);
           if (location.state?.from.startsWith("/admin")) {
-            console.log("Hi");
+            // console.log("Hi");
             from = home;
           } else from = location.state.from;
         } else {
