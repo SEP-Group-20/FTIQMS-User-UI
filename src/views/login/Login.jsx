@@ -71,13 +71,13 @@ export default function Login() {
           logout();
         }
         var from;
-        if(location.state?.from){
-          console.log(location.state.from);
-          if(location.state?.from.startsWith("/admin")) {
+        if (location.state?.from) {
+          console.log("Form: ", location.state.from);
+          if (location.state?.from.startsWith("/admin")) {
             console.log("Hi");
             from = home;
-          }else from = location.state.from;
-        }else{
+          } else from = location.state.from;
+        } else {
           from = home;
         }
         navigate(from, { replace: true });
