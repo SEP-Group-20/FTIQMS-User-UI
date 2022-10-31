@@ -81,6 +81,14 @@ const getFuelStationLocation = (managerId) => {
     });
 };
 
+const setFuelStationLocation = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/setFuelStationLocation",
+        data: formData,
+    });
+};
+
 export {
     isFuelStationRegistered,
     isFuelStationReal,
@@ -91,5 +99,6 @@ export {
     setFuelStatus,
     registerFuelStation,
     getAllFuelDeliveryDetails,
-    getFuelStationLocation
+    getFuelStationLocation,
+    setFuelStationLocation
 };
