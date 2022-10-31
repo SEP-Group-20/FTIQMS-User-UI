@@ -74,13 +74,22 @@ const getAllFuelDeliveryDetails = (formData) => {
     });
 };
 
-export {isFuelStationRegistered,
-        isFuelStationReal,
-        getFuelStationDetailsMFE,
-        getFuelStationRegistrationNumber,
-        getFuelStationDetails,
-        getFuelDetails,
-        setFuelStatus,
-        registerFuelStation,
-        getAllFuelDeliveryDetails
+const getFuelStationLocation = (managerId) => {
+    return axios({
+        method: "get",
+        url: APIEndPoint + `/getFuelStationLocation/${managerId}`,
+    });
+};
+
+export {
+    isFuelStationRegistered,
+    isFuelStationReal,
+    getFuelStationDetailsMFE,
+    getFuelStationRegistrationNumber,
+    getFuelStationDetails,
+    getFuelDetails,
+    setFuelStatus,
+    registerFuelStation,
+    getAllFuelDeliveryDetails,
+    getFuelStationLocation
 };
