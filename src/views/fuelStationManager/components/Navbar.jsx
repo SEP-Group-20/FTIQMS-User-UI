@@ -50,7 +50,7 @@ const Navbar = () => {
     try {
       const res = await logoutBackend();
       logout();
-      navigate("/login");
+      navigate("/login",{replace:true});
     } catch (err) {
       console.log(err);
     }
