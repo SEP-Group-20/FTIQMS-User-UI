@@ -10,7 +10,9 @@ const admin_searchUsers = () => {
       <Navbar/>
       <Stack direction="row" justifyContent="space-between" flex={1} overflow="auto">
         <Sidebar />
-        <Searchbar/>
+        <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
+          <Searchbar/>
+        </Stack>
       </Stack>
     </Box>
   );
