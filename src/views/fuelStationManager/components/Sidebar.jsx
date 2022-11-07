@@ -1,7 +1,21 @@
-import { AccountBox, Home, LocalGasStation, PlaylistAddCheck } from '@mui/icons-material'
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { styled } from '@mui/system';
-import React from 'react'
+import {
+  AccountBox,
+  LocationOn,
+  Home,
+  LocalGasStation,
+  PlaylistAddCheck,
+} from "@mui/icons-material";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import React from "react";
 
 const FullSideBar = styled(Box)(({ theme }) => ({
   display: "none",
@@ -26,7 +40,7 @@ const Sidebar = () => {
     <Box p={2} bgcolor="#f57b51">
       <Box>
         <FullSideBar>
-          <List sx={{paddingY: 0}}>
+          <List sx={{ paddingY: 0 }}>
             <ListItem disablePadding>
               <ListItemButton component="a" href="/fuelStationManager/home">
                 <ListItemIcon>
@@ -37,7 +51,10 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/fuelStationManager/viewOrders">
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/viewOrders"
+              >
                 <ListItemIcon>
                   <LocalGasStation />
                   <PlaylistAddCheck />
@@ -47,13 +64,27 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/fuelStationManager/fuelStatus">
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/fuelStatus"
+              >
                 <ListItemIcon>
                   <LocalGasStation />
                 </ListItemIcon>
                 <ListItemText primary="Fuel Status" />
               </ListItemButton>
             </ListItem>
+            {/* element for the location setting */}
+            <Divider component="li" />
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="/fuelStationManager/location">
+                <ListItemIcon>
+                  <LocationOn />
+                </ListItemIcon>
+                <ListItemText primary="Location" />
+              </ListItemButton>
+            </ListItem>
+            {/* end of location link */}
             <Divider component="li" />
             <ListItem disablePadding>
               <ListItemButton component="a" href="#">
@@ -67,18 +98,26 @@ const Sidebar = () => {
         </FullSideBar>
 
         <IconSidebar>
-          <List sx={{paddingY: 0}}>
+          <List sx={{ paddingY: 0 }}>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/fuelStationManager/home" sx={{padding: 1}}>
-                <ListItemIcon sx={{minWidth: "24px"}}>
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/home"
+                sx={{ padding: 1 }}
+              >
+                <ListItemIcon sx={{ minWidth: "24px" }}>
                   <Home />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/fuelStationManager/viewOrders" sx={{padding: 1}}>
-                <ListItemIcon sx={{minWidth: "24px"}}>
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/viewOrders"
+                sx={{ padding: 1 }}
+              >
+                <ListItemIcon sx={{ minWidth: "24px" }}>
                   <LocalGasStation />
                   <PlaylistAddCheck />
                 </ListItemIcon>
@@ -86,16 +125,34 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/fuelStationManager/fuelStatus" sx={{padding: 1}}>
-                <ListItemIcon sx={{minWidth: "24px"}}>
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/fuelStatus"
+                sx={{ padding: 1 }}
+              >
+                <ListItemIcon sx={{ minWidth: "24px" }}>
                   <LocalGasStation />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
+            {/* starting of location */}
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#" sx={{padding: 1}}>
-                <ListItemIcon sx={{minWidth: "24px"}}>
+              <ListItemButton
+                component="a"
+                href="/fuelStationManager/location"
+                sx={{ padding: 1 }}
+              >
+                <ListItemIcon sx={{ minWidth: "24px" }}>
+                  <LocationOn />
+                </ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+            {/* ending of location */}
+            <Divider component="li" />
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="#" sx={{ padding: 1 }}>
+                <ListItemIcon sx={{ minWidth: "24px" }}>
                   <AccountBox />
                 </ListItemIcon>
               </ListItemButton>
@@ -104,7 +161,7 @@ const Sidebar = () => {
         </IconSidebar>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
