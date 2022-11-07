@@ -2,13 +2,17 @@ import { Box, Button } from "@mui/material";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { useState } from "react";
 import { useEffect } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   getFuelStationLocation,
   setFuelStationLocation,
 } from "../../../../services/fuelStationServices";
 import { useAuth } from "../../../../utils/auth";
+import { refreshLogin } from "../../../../services/AuthServices";
+import Swal from "sweetalert2";
 
-function Location() {
+function Location({ initPhase }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDiHGf2cG7mFOUa4-2AXbY4-teME8pfK8Y",
   });
@@ -16,9 +20,11 @@ function Location() {
   const { auth } = useAuth();
   const { user } = auth();
 
+  const [waiting, setWaiting] = useState(false);
+
   const [center, setCenter] = useState({});
   const [clickedLocation, setClickedLocation] = useState(null);
-  const [chaningState, setChangingState] = useState(false);
+  const [chaningState, setChangingState] = useState(initPhase);
   const [updated, setUpdated] = useState(0);
 
   useEffect(() => {
@@ -37,14 +43,27 @@ function Location() {
   }, [updated]);
 
   const handleConfirm = async () => {
-    const response = await setFuelStationLocation({
-      managerId: user.id,
-      location: clickedLocation,
-    });
-    if (response.data.success) {
-      setChangingState(false);
-      setClickedLocation(null);
-      setUpdated(updated + 1);
+    setWaiting(true);
+    try {
+      const response = await setFuelStationLocation({
+        managerId: user.id,
+        location: clickedLocation,
+      });
+      if (response.data.success) {
+        setChangingState(false);
+        setClickedLocation(null);
+        setUpdated(updated + 1);
+        await refreshLogin();
+        setWaiting(false);
+      }
+    } catch (err) {
+      setWaiting(false);
+      Swal.fire({
+        title: "Something Went Wrong!",
+        text: "Try again in later..",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -55,6 +74,12 @@ function Location() {
 
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2}>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={waiting}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       {!isLoaded && <h1>Loading...</h1>}
       {isLoaded && (
         <Map
@@ -74,15 +99,17 @@ function Location() {
       )}
       {chaningState && (
         <>
+          {!initPhase && (
+            <Button
+              sx={{ width: "50%", color: "red" }}
+              variant="outlined"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          )}
           <Button
-            sx={{ width: "50%", color: "red" }}
-            variant="outlined"
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
-          <Button
-            sx={{ width: "50%" }}
+            sx={{ width: `${initPhase ? "100%" : "50%"}` }}
             variant="contained"
             onClick={handleConfirm}
             disabled={clickedLocation ? false : true}
