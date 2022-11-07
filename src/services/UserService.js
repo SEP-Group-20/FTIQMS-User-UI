@@ -42,9 +42,19 @@ const getAllFSMDetails = (formData) => {
     });
 };
 
-export {getUserName,
-        isEmailRegistered,
-        registerAdmin,
-        getAllAdminDetails,
-        getAllFSMDetails
+const updatePwd = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/updatePwd",
+        data: formData
+    });
+};
+
+export {
+    getUserName,
+    isEmailRegistered,
+    registerAdmin,
+    getAllAdminDetails,
+    getAllFSMDetails,
+    updatePwd
 };

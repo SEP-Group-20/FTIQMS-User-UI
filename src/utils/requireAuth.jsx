@@ -19,7 +19,8 @@ const RequireAuth = ({ children, allowedRoles }) => {
 
   return (user.role === MANAGER && user.status === SET_LOCATION) ||
     (user.role === ADMIN && user.status === PWD_UPDATED) ||
-    location.pathname === "/fuelStationManager/location" ? (
+    (location.pathname === "/fuelStationManager/location")||
+    (location.pathname ==="/updatePwd") ? (
     children
   ) : user?.status === COMPLETELY_NEW ? (
     <Navigate to="/updatePwd" state={{ from: location.pathname }} replace />
