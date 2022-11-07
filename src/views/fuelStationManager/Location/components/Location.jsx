@@ -11,6 +11,7 @@ import {
 import { useAuth } from "../../../../utils/auth";
 import { refreshLogin } from "../../../../services/AuthServices";
 import Swal from "sweetalert2";
+import Toast from "../../../../components/Toast";
 
 function Location({ initPhase }) {
   const { isLoaded } = useLoadScript({
@@ -55,6 +56,11 @@ function Location({ initPhase }) {
         setUpdated(updated + 1);
         await refreshLogin();
         setWaiting(false);
+
+        Toast.fire({
+          icon: "success",
+          title: "set fuel status successfully!",
+        });
       }
     } catch (err) {
       setWaiting(false);
