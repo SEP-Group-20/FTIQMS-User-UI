@@ -19,6 +19,7 @@ import RegisterFuelStation from "../views/admin/RegisterFuelStation";
 import AddFuelDelivery from "../views/fuelStationManager/AddFuelDelivery";
 import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
 import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
+import PWDResetter from "../views/PWDResetter/PWDResetter";
 
 export function Router() {
   return (
@@ -26,6 +27,7 @@ export function Router() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/login' element={<Login />} />
+        <Route path="/updatePwd" element={<RequireAuth allowedRoles={[MANAGER,ADMIN]}><PWDResetter /></RequireAuth>}/>
 
         <Route path="/fuelStationManager/home" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>}/>
         <Route path='/fuelStationManager/viewOrders' element={<RequireAuth allowedRoles={[MANAGER]}><FSMViewOrders /></RequireAuth>}/>
