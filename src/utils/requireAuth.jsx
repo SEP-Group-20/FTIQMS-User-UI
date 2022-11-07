@@ -19,17 +19,22 @@ const RequireAuth = ({ children, allowedRoles }) => {
 
   return (user.role === MANAGER && user.status === SET_LOCATION) ||
     (user.role === ADMIN && user.status === PWD_UPDATED) ||
-    (location.pathname === "/fuelStationManager/location")||
-    (location.pathname ==="/updatePwd") ? (
+    (location.pathname === "/fuelStationManager/location" && user.status === SET_FUEL_STATUS) ||
+    (location.pathname === "/updatePwd" && user.status=== COMPLETELY_NEW) ||
+    (location.pathname === "/fuelStationManager/setFuelStatus" && user.status === PWD_UPDATED) ? (
     children
   ) : user?.status === COMPLETELY_NEW ? (
     <Navigate to="/updatePwd" state={{ from: location.pathname }} replace />
   ) : user.role === MANAGER && user?.status === PWD_UPDATED ? (
-    <Navigate to="/setFuelStatus" state={{ from: location.pathname }} replace />
+    <Navigate
+      to="/fuelStationManager/setFuelStatus"
+      state={{ from: location.pathname }}
+      replace
+    />
   ) : user.role === MANAGER && user?.status === SET_FUEL_STATUS ? (
     <Navigate
       to="/fuelStationManager/location"
-      state={{ from: location.pathname}}
+      state={{ from: location.pathname }}
       replace
     />
   ) : (
