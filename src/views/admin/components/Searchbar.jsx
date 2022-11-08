@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
-import { Avatar, Badge, Menu, MenuItem} from '@mui/material';
+import { ButtonGroup} from '@mui/material';
 import  { useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -43,7 +43,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
 }));
-
 
 
 export default function SearchAppBar() {
@@ -127,8 +126,8 @@ export default function SearchAppBar() {
        
           </Stack>
         </Toolbar>
-       
       </AppBar>
+      
     </Box>
 
       {userType === "admins" && <BasicTable/>}
@@ -136,4 +135,6 @@ export default function SearchAppBar() {
     </Box>
   );
 }
+
+
 

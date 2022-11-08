@@ -2,10 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 
 import AdminHome from "../views/admin/AdminHome";
-import Fsm_ViewOrders from "../views/fuelStationManager/Fsm_ViewOrders";
+import FSMViewOrders from "../views/fuelStationManager/FSMViewOrders";
 import RequireAuth from '../utils/requireAuth';
 import {ADMIN,MANAGER} from "../utils/RolesList";
-import OrderDetails from '../views/fuelStationManager/Fsm_ViewOrderDetails';
 import SearchUsers from '../views/admin/SearchUsers';
 import ViewAdmins from '../views/admin/ViewAdmins';
 import ViewFSM from '../views/admin/ViewFuelStationManager';
@@ -17,7 +16,11 @@ import Contact from '../views/contact/Contact';
 import RegisterAdmin from "../views/admin/RegisterAdmin";
 import FuelStations from "../views/admin/FuelStations";
 import RegisterFuelStation from "../views/admin/RegisterFuelStation";
-
+import AddFuelDelivery from "../views/fuelStationManager/AddFuelDelivery";
+import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
+import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
+import PWDResetter from "../views/PWDResetter/PWDResetter";
+import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountSetter";
 
 export function Router() {
   return (
@@ -25,20 +28,26 @@ export function Router() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/login' element={<Login />} />
-        <Route exact path='fuelStationManager/viewOrders' element={<Fsm_ViewOrders />}  />
-        <Route path="/fuelStationManagerHome" element={<RequireAuth allowedRoles={[MANAGER]}> <FuelStationManagerHome /> </RequireAuth> } />
-        <Route path="/registerAdmin" element={<RegisterAdmin />} />
-        <Route path="/fuelStationManagerHome" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>} />
-        <Route path="/adminHome" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
+        <Route path="/updatePwd" element={<RequireAuth allowedRoles={[MANAGER,ADMIN]}><PWDResetter /></RequireAuth>}/>
+
+        <Route path="/fuelStationManager/home" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>}/>
+        <Route path="/fuelStationManager/setFuelStatus" element={<RequireAuth allowedRoles={[MANAGER]}><FuelAmountSetter /></RequireAuth>}/>
+        <Route path='/fuelStationManager/viewOrders' element={<RequireAuth allowedRoles={[MANAGER]}><FSMViewOrders /></RequireAuth>}/>
+        <Route path='/fuelStationManager/fuelStatus' element={<RequireAuth allowedRoles={[MANAGER]}><FSMFuelStatus /></RequireAuth>}/>
+        <Route path='/fuelStationManager/addFuelDelivery' element={<RequireAuth allowedRoles={[MANAGER]}><AddFuelDelivery /></RequireAuth>}/>
+        <Route path='/fuelStationManager/location' element={<RequireAuth allowedRoles={[MANAGER]}><LocationSetter /></RequireAuth>}/>
+
+        <Route path="/admin/home" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
+        <Route path="/admin/registerAdmin" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterAdmin /></RequireAuth>} />
         <Route path="/admin/fuelStations" element={<RequireAuth allowedRoles={[ADMIN]}><FuelStations /></RequireAuth>} />
         <Route path="/admin/registerFuelStation" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterFuelStation /></RequireAuth>} />
+        <Route path='/admin/SearchUsers' element={<RequireAuth allowedRoles={[ADMIN]}><SearchUsers /></RequireAuth>} />
+        <Route path='/admin/viewAdmins' element={<RequireAuth allowedRoles={[ADMIN]}><ViewAdmins /></RequireAuth>} />
+        <Route path='/admin/FuelStationManagerTable' element={<RequireAuth allowedRoles={[ADMIN]}><ViewFSM /></RequireAuth>} />
+
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />
-        <Route exact path='orderDetails' element={<OrderDetails />} />
-        <Route exact path='admin/SearchUsers' element={<SearchUsers />} />
-        <Route exact path='admin/viewAdmins' element={<ViewAdmins/>} />
-        <Route exact path='admin/FuelStationManagerTable' element={<ViewFSM />} />
 
       </Routes>
     </BrowserRouter>

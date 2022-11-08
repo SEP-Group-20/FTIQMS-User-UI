@@ -1,7 +1,9 @@
 import { AppBar, Avatar, Box, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getUserName } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
+import { logoutBackend } from '../../../services/AuthServices';
 
 const StyledToolBar = styled(Toolbar)({
   bgcolor:"#d63447",
@@ -31,7 +33,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState("");
 
-  const {auth} = useAuth();
+  const {auth, logout} = useAuth();
+  const navigate = useNavigate();
 
   const userEmail = auth().user.email;
 
@@ -42,6 +45,16 @@ const Navbar = () => {
     }
     fetchusername();
   }, [userEmail]);
+
+  const logoutUser = async () => {
+    try {
+      const res = await logoutBackend();
+      logout();
+      navigate("/login",{replace:true});
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   return (
     <AppBar position="sticky" sx={{background:"#d63447"}}>
@@ -60,9 +73,6 @@ const Navbar = () => {
 
         <UserBox onClick={e=>setOpen(true)}>
           <Avatar sx={{width:30, height: 30}} />
-          <Typography variant='span'>
-            {username}
-          </Typography>
         </UserBox>
 
       </StyledToolBar>
@@ -83,7 +93,7 @@ const Navbar = () => {
         }}
       >
         <MenuItem component="a" href="#">Profile</MenuItem>
-        <MenuItem component="a" href="#">Logout</MenuItem>
+        <MenuItem component="a" onClick={logoutUser}>Logout</MenuItem>
       </Menu>
     </AppBar>
   )

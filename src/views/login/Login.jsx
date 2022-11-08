@@ -64,26 +64,33 @@ export default function Login() {
         setAuth(response.data.accessToken);
 
         var home = "";
-        if (auth().user.role === MANAGER) home = "/fuelStationManagerHome";
-        else if (auth().user.role === ADMIN) home = "/adminHome";
+        if (auth().user.role === MANAGER) home = "/fuelStationManager/home";
+        else if (auth().user.role === ADMIN) home = "/admin/home";
         else {
           throw new Error("InvalidAccountError");
           logout();
         }
-        const from = location.state?.from || home;
+        var from;
+        if (location.state?.from) {
+          console.log("Form: ", location.state.from);
+          if (location.state?.from.startsWith("/admin")) {
+            // console.log("Hi");
+            from = home;
+          } else from = location.state.from;
+        } else {
+          from = home;
+        }
         navigate(from, { replace: true });
       }
     } catch (err) {
       if (!err?.response) {
-        if (err.message === "InvalidAccountError") {
-          setErrMsg("Something went wrong!");
-        } else setErrMsg("No server response!");
+        setErrMsg("Something went wrong!");
       } else if (err.response?.status === 400) {
         setErrMsg("Missing Email or Password!");
       } else if (err.response?.status === 401) {
         setErrMsg("Invalid username, password pair!");
       } else {
-        setErrMsg("Login Failed!");
+        setErrMsg("No server response!");
       }
     }
   };

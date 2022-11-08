@@ -29,17 +29,32 @@ const registerAdmin = (formData) => {
 const getAllAdminDetails = (formData) => {
     return axios({
         method: "post",
-        url : APIEndPoint + "/getAllAdminDetails",
+        url: APIEndPoint + "/getAllAdminDetails",
         data: formData,
-    }
-    )
-}
+    });
+};
 
-const getAllFSMDetails = (FormData) => {
+const getAllFSMDetails = (formData) => {
     return axios({
         method: "post",
-        url : APIEndPoint + "/getAllFSMDetails",
-        data : formData
-    })
-}
-export {getUserName, isEmailRegistered,registerAdmin,getAllAdminDetails,getAllFSMDetails};
+        url: APIEndPoint + "/getAllFSMDetails",
+        data: formData,
+    });
+};
+
+const updatePwd = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/updatePwd",
+        data: formData
+    });
+};
+
+export {
+    getUserName,
+    isEmailRegistered,
+    registerAdmin,
+    getAllAdminDetails,
+    getAllFSMDetails,
+    updatePwd
+};

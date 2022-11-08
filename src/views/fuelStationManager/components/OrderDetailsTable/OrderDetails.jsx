@@ -8,43 +8,43 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
-import { getAllAdminDetails } from '../../../services/UserService';
-import { useAuth } from '../../../utils/auth';
-import AdminDetails from '../AdminDetails';
+import { useAuth } from '../../../../utils/auth';
+import { getAllFuelDeliveryDetails } from '../../../../services/fuelStationServices';
+import OrderDetails from '../../OrderDetails';
 
-function createData(email, firstName, lastName, mobile, password) {
-  return {email, firstName, lastName, mobile, password};
+function createData(deliveryDate, deliveryID, fuel, fuelAmount, fuelStation, orderDate, orderID, value) {
+  return {deliveryDate, deliveryID, fuel, fuelAmount, fuelStation, orderDate, orderID, value};
 }
 
 export default function BasicTable() {
   const [dataview, setDataView] = useState(false)
   const [itemdata, setItemData] = useState({})
-  const [adminDetials, setAdminDetails] = useState([])
+  const [fuelDeliveryDetials, setFuelDeliveryDetails] = useState([])
   const [errMsg, setErrMsg] = useState("");
 
   const {auth} = useAuth();
 
   const userEmail = auth().user.email;
 
-  // get details of all the registered admins of the system
+  // get details of all the registered fuel deliveries of the fuel station
   useEffect(() => {
-    async function fetchAllAdminDetails() {
-      const allAdminDetails = await getAllAdminDetails({userEmail: userEmail});
+    async function fetchAllFuelDeliveryDetails() {
+      const allFuelDeliveryDetails = await getAllFuelDeliveryDetails({userEmail: userEmail});
       
-      if (allAdminDetails.data.success)
-        setAdminDetails(allAdminDetails.data.allAdminDetails);
+      if (allFuelDeliveryDetails.data.success)
+        setFuelDeliveryDetails(allFuelDeliveryDetails.data.allFuelDeliveryDetails);
       else
         setErrMsg("Fuel delivery details retrival failed!");
     }
 
-    fetchAllAdminDetails();
+    fetchAllFuelDeliveryDetails();
   }, [userEmail]);
 
   const rows = [];
 
-  adminDetials.forEach((admin) => {
-    const {email, firstName, lastName, mobile, password} = admin
-    rows.push(createData(email, firstName, lastName, mobile, password))
+  fuelDeliveryDetials.forEach((fuelDelivery) => {
+    const {deliveryDate, deliveryID, fuel, fuelAmount, fuelStation, orderDate, orderID, value} = fuelDelivery
+    rows.push(createData(deliveryDate, deliveryID, fuel, fuelAmount, fuelStation, orderDate, orderID, value))
   });
 
   const handleClick = (value) =>{
@@ -55,7 +55,7 @@ export default function BasicTable() {
   return (
     <Box bgcolor="#d1cebd" flex={2} p={2}>
       <Typography variant='h2' sx={{ display: "flex", justifyContent: "center", paddingBottom:2}}>
-        System Admins
+        Fuel Deliveries
       </Typography>
       {!dataview &&  
       <TableContainer component={Paper} sx={{
@@ -69,8 +69,8 @@ export default function BasicTable() {
         <TableHead>
           <TableRow>
             
-            <TableCell align='center'>Email</TableCell>
-            <TableCell align='center'>Name</TableCell>
+            <TableCell align='center'>Order Id</TableCell>
+            <TableCell align='center'>Fuel</TableCell>
             <TableCell align='center'>View Detais</TableCell>
             
           </TableRow>
@@ -81,8 +81,8 @@ export default function BasicTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
               key={row.OrderId}
             >
-              <TableCell align='center'>{row.email}</TableCell>
-              <TableCell align='center'>{row.firstName+" "+row.lastName}</TableCell>
+              <TableCell align='center'>{row.orderID}</TableCell>
+              <TableCell align='center'>{row.fuel}</TableCell>
               <TableCell  align='center'> 
                 <Button variant="contained" onClick={()=>{handleClick(row)}}>
                   View
@@ -94,8 +94,7 @@ export default function BasicTable() {
         </TableBody>
       </Table>
     </TableContainer>}
-    {dataview && <AdminDetails userData={itemdata}/>}
+    {dataview && <OrderDetails orderData={itemdata}/>}
   </Box>
   );
 }
-
