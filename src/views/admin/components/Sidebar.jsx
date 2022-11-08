@@ -6,7 +6,6 @@ import React from 'react'
 const FullSideBar = styled(Box)(({ theme }) => ({
   display: "none",
   backgroundColor: "#f57b51",
-  minHeight: "100vh",
   [theme.breakpoints.up("sm")]: {
     display: "flex",
   },
@@ -15,7 +14,6 @@ const FullSideBar = styled(Box)(({ theme }) => ({
 const IconSidebar = styled(Box)(({ theme }) => ({
   display: "flex",
   backgroundColor: "#f57b51",
-  minHeight: "100vh",
   [theme.breakpoints.up("sm")]: {
     display: "none",
   },
