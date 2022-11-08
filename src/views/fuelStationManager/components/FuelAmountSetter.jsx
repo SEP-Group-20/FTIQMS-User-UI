@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 import Toast from "../../../components/Toast";
 import { refreshLogin } from "../../../services/AuthServices";
-import { setInitalFuelStat } from "../../../services/fuelStationServices";
+import { setInitalFuelStat } from "../../../services/FuelStationServices";
 
 function FuelAmountSetter() {
   const navigate = useNavigate();

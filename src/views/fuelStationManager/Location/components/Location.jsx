@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {
   getFuelStationLocation,
   setFuelStationLocation,
-} from "../../../../services/fuelStationServices";
+} from "../../../../services/FuelStationServices";
 import { useAuth } from "../../../../utils/auth";
 import { refreshLogin } from "../../../../services/AuthServices";
 import Swal from "sweetalert2";
