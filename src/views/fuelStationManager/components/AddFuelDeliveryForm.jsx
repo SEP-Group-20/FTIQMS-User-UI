@@ -13,9 +13,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CheckCircle, LocalGasStation } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Alert, Modal, Stack } from "@mui/material";
-import { getFuelStationRegistrationNumber } from '../../../services/fuelStationServices';
+import { getFuelStationRegistrationNumber } from '../../../services/FuelStationServices';
 import { useAuth } from '../../../utils/auth';
-import { getFuelOrderDetailsMFE, isFuelDeliveryRegistered, isFuelOrderReal, registerFuelDelivery } from "../../../services/fuelOrderServices";
+import { getFuelOrderDetailsMFE, isFuelDeliveryRegistered, isFuelOrderReal, registerFuelDelivery } from "../../../services/FuelOrderServices";
 
 const ORDERID_REGEX = /^[A-Z]{3}\d{7}$/;
 const DELIVERYID_REGEX = /^[A-Z]{3}\d{7}$/;

@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
 import { useAuth } from '../../../../utils/auth';
-import { getAllFuelDeliveryDetails } from '../../../../services/fuelStationServices';
+import { getAllFuelDeliveryDetails } from '../../../../services/FuelStationServices';
 import OrderDetails from '../../OrderDetails';
 
 function createData(deliveryDate, deliveryID, fuel, fuelAmount, fuelStation, orderDate, orderID, value) {

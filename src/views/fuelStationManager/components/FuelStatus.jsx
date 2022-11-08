@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, Switch, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getFuelDetails, getFuelStationRegistrationNumber, setFuelStatus } from '../../../services/fuelStationServices';
+import { getFuelDetails, getFuelStationRegistrationNumber, setFuelStatus } from '../../../services/FuelStationServices';
 import { useAuth } from '../../../utils/auth';
 
 const FuelStatus = () => {
