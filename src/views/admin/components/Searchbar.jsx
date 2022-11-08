@@ -3,11 +3,21 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 import { ButtonGroup} from '@mui/material';
 import  { useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import BasicTable from './AdminsTable'
+import FSMTable from './FuelstationManagerTable';
+import { useNavigate } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -34,39 +44,97 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
+
 export default function SearchAppBar() {
-  // const navigate = useNavigate();
-  // const [isShown, setIsShown] = useState(false);
+  
+    const navigate = useNavigate();
+    const [isShown, setIsShown] = useState(false);
 
-  // const handleClick = event => {
-  //   // 👇️ toggle shown state
-  //   setIsShown(current => !current);
+    const users = ["admins", "fuel station managers"]
+    const [userType, setUserType] = useState('')
 
-  //   // 👇️ or simply set it to true
-  //   // setIsShown(true);
-  // };
-  const [open, setOpen] = useState(false);
+    // const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+      setUserType(event.target.value);
+    };
 
   return (
-    <Box bgcolor="#d1cebd">
-      <ButtonGroup variant="text" aria-label="text button group" fullWidth>
-        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
-        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/FuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
-      </ButtonGroup>
-
+    <Box bgcolor="#d1cebd" flex={5} p={2}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-            {/* TODO: Search bar */}
-            <Search onClick={e=>setOpen(true)}>
-              <SearchIconWrapper>
-                <SearchIcon />
-                <Button variant="text">Search User...</Button>
-              </SearchIconWrapper>
-            </Search>
+          
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            Select User Type
+          </Typography>
+       
+          <Stack spacing={2} direction="row">
+          {/* <Menu> */}
+          <FormControl fullWidth>
+         
+          <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={userType}
+            label="User Type"
+            onChange={handleChange}
+          >
+          {users.map(userType=> (
+        <MenuItem >
+        <Button variant="text" key ={userType} onClick ={()=> setUserType(userType)}>{userType}</Button></MenuItem>
+        ))}
+          </Select>
+         
+        </FormControl>
+        {/* </Menu> */}
+          {/* <Search onClick={e=>setOpen(true)}>
+            <SearchIconWrapper>
+              <SearchIcon />
+              <Button variant="text">Select User Type</Button>
+            </SearchIconWrapper>
+          </Search>
+          <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+       
+        open={open}
+        onClose={e=>setOpen(false)}
+
+        anchorReference="anchorPosition"
+        anchorPosition={{ top: 200, left: 1300 }}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        {users.map(userType=> (
+        <MenuItem >
+        <Button variant="text" key ={userType} onClick ={()=> setUserType(userType)}>{userType}</Button></MenuItem>
+        ))}
+      </Menu> */}
+       
+          </Stack>
         </Toolbar>
       </AppBar>
       
     </Box>
+
+      {userType === "admins" && <BasicTable/>}
+      {userType === "fuel station managers" && <FSMTable/>}
+    </Box>
   );
 }
+
+
 
