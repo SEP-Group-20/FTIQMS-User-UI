@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Stack } from '@mui/system';
 import { Alert, Button, List, ListItem, Typography } from '@mui/material';
 
-const OrderDetails = ({orderData}) => {
+const OrderDetails = ({orderData}) => { //order details
   const [errMsg, setErrMsg] = useState("");
 
   // display the detials of the fuel order, error messages
