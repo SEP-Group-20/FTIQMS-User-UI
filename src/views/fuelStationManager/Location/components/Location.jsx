@@ -12,6 +12,12 @@ import { useAuth } from "../../../../utils/auth";
 import { refreshLogin } from "../../../../services/AuthServices";
 import Swal from "sweetalert2";
 import Toast from "../../../../components/Toast";
+import { useNavigate } from "react-router-dom";
+
+const SRI_LANKA = {
+  lat: 7.8731,
+  lng: 80.7718,
+};
 
 function Location({ initPhase }) {
   const { isLoaded } = useLoadScript({
@@ -20,6 +26,7 @@ function Location({ initPhase }) {
 
   const { auth } = useAuth();
   const { user } = auth();
+  const navigate = useNavigate();
 
   const [waiting, setWaiting] = useState(false);
 
@@ -37,7 +44,6 @@ function Location({ initPhase }) {
           lng: res.data.location.Longitude,
         });
       }
-      // console.log(typeof(res.data.location.Latitude));
     };
 
     fetchLocation();
@@ -61,6 +67,7 @@ function Location({ initPhase }) {
           icon: "success",
           title: "set fuel status successfully!",
         });
+        if (initPhase) navigate("/fuelStationManager/home");
       }
     } catch (err) {
       setWaiting(false);
@@ -89,7 +96,7 @@ function Location({ initPhase }) {
       {!isLoaded && <h1>Loading...</h1>}
       {isLoaded && (
         <Map
-          pos={center}
+          pos={center ? center : SRI_LANKA}
           clickHandler={setClickedLocation}
           isChanging={chaningState}
         />
@@ -133,8 +140,8 @@ function Map({ pos, clickHandler, isChanging }) {
 
   return (
     <GoogleMap
-      zoom={15}
-      center={pos}
+      zoom={8}
+      center={pos.lat ? pos : SRI_LANKA}
       mapContainerStyle={{ width: "100%", height: "95vh" }}
       onClick={(event) => {
         if (isChanging) {
