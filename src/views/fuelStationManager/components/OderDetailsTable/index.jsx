@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import Order from '../OrderDetailsCard/Order';
+import { Box, Stack } from "@mui/system";
 
 function createData(OrderId, EndStation, Status) {
   return {OrderId, EndStation, Status };
@@ -66,7 +67,10 @@ export default function BasicTable() {
     setdataview(true)
   };
   
-  return (<div>
+  return (
+  <Box bgcolor="#d1cebd" flex={5} p={2}>
+  <div>
+    
     {!dataview &&  <TableContainer component={Paper} sx={{ m:5,width:'50%',borderLeft: "1px solid #ffffff4d"
     ,borderTop: "1px solid #ffffff4d",
     backdropFilter: 'blur(10px)',
@@ -110,7 +114,7 @@ export default function BasicTable() {
 
 
   </div>
-   
+   </Box>
             
   );
 

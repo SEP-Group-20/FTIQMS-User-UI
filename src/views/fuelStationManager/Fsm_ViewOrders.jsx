@@ -8,16 +8,17 @@ import Table from './components/OderDetailsTable/index'
 
     
 const Fsm_ViewOrders = () => {
-      
-  
       return (
-        <Box>
+        <Box display="flex" flexDirection="column" sx={{ minHeight: "100vh" }}>
           <Navbar/>
-          <Stack direction="row" justifyContent="space-between">
-            <Sidebar />
-            
-            <Body> <Table/> </Body>
-            
+          <Stack 
+          direction="row" 
+          justifyContent="space-between"
+          flex={1}
+          overflow="auto"
+          >
+            <Sidebar />  
+            <Table/> 
           </Stack>
         </Box>
       );

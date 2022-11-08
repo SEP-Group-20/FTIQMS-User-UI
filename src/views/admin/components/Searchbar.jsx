@@ -4,17 +4,17 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Avatar, Badge, Menu, MenuItem} from '@mui/material';
 import  { useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import adminTable from './AdminsTable'
+import BasicTable from './AdminsTable'
+import FSMTable from './FuelstationManagerTable';
 import { useNavigate } from "react-router-dom";
-
-
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 
@@ -47,20 +47,21 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 
 export default function SearchAppBar() {
+  
     const navigate = useNavigate();
     const [isShown, setIsShown] = useState(false);
-  
-    const handleClick = event => {
-      // 👇️ toggle shown state
-      setIsShown(current => !current);
-  
-      // 👇️ or simply set it to true
-      // setIsShown(true);
-    };
-    const [open, setOpen] = useState(false);
-  return (
 
-   
+    const users = ["admins", "fuel station managers"]
+    const [userType, setUserType] = useState('')
+
+    // const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+      setUserType(event.target.value);
+    };
+
+  return (
+    <Box bgcolor="#d1cebd" flex={5} p={2}>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -71,20 +72,34 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            Enter User Type
+            Select User Type
           </Typography>
        
           <Stack spacing={2} direction="row">
-          <Search onClick={e=>setOpen(true)}>
+          {/* <Menu> */}
+          <FormControl fullWidth>
+         
+          <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={userType}
+            label="User Type"
+            onChange={handleChange}
+          >
+          {users.map(userType=> (
+        <MenuItem >
+        <Button variant="text" key ={userType} onClick ={()=> setUserType(userType)}>{userType}</Button></MenuItem>
+        ))}
+          </Select>
+         
+        </FormControl>
+        {/* </Menu> */}
+          {/* <Search onClick={e=>setOpen(true)}>
             <SearchIconWrapper>
               <SearchIcon />
-              <Button variant="text">Search Here</Button>
+              <Button variant="text">Select User Type</Button>
             </SearchIconWrapper>
-            
-            {/* <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}> 
-              </StyledInputBase> */}
           </Search>
           <Menu
         id="demo-positioned-menu"
@@ -94,26 +109,30 @@ export default function SearchAppBar() {
         onClose={e=>setOpen(false)}
 
         anchorReference="anchorPosition"
-  anchorPosition={{ top: 200, left: 1300 }}
-  anchorOrigin={{
-    vertical: 'top',
-    horizontal: 'center',
-  }}
-  transformOrigin={{
-    vertical: 'top',
-    horizontal: 'left',
-  }}
+        anchorPosition={{ top: 200, left: 1300 }}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
       >
-
+        {users.map(userType=> (
         <MenuItem >
-        <Button variant="text" onClick ={()=>{navigate('/admin/viewAdmins')}}> Admins</Button></MenuItem>
-        <MenuItem >
-        <Button variant="text" onClick ={()=>{navigate('/admin/FuelStationManagerTable')}}>Fuel Station Managers</Button></MenuItem>
-      </Menu>
+        <Button variant="text" key ={userType} onClick ={()=> setUserType(userType)}>{userType}</Button></MenuItem>
+        ))}
+      </Menu> */}
+       
           </Stack>
         </Toolbar>
        
       </AppBar>
+    </Box>
+
+      {userType === "admins" && <BasicTable/>}
+      {userType === "fuel station managers" && <FSMTable/>}
     </Box>
   );
 }

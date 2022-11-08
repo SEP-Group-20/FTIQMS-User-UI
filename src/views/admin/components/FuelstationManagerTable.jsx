@@ -30,7 +30,7 @@ const rows = [
  
 ];
 
-export default function BasicTable() {
+export default function FSMTable() {
   const navigate = useNavigate();
   return (
     <TableContainer component={Paper} sx={{ m:5,width:'50%',borderLeft: "1px solid #ffffff4d"

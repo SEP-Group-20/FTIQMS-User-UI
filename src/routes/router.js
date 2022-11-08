@@ -25,7 +25,7 @@ export function Router() {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/login' element={<Login />} />
-        <Route exact path='/viewOrders' element={<Fsm_ViewOrders />}  />
+        <Route exact path='fuelStationManager/viewOrders' element={<Fsm_ViewOrders />}  />
         <Route path="/fuelStationManagerHome" element={<RequireAuth allowedRoles={[MANAGER]}> <FuelStationManagerHome /> </RequireAuth> } />
         <Route path="/registerAdmin" element={<RegisterAdmin />} />
         <Route path="/fuelStationManagerHome" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>} />

@@ -9,12 +9,15 @@ const admin_searchUsers = () => {
       
   
     return (
-      <Box>
+      <Box display="flex" flexDirection="column" sx={{ minHeight: "100vh" }}>
         <Navbar/>
-        <Stack direction="row" justifyContent="space-between">
+        <Stack  
+          direction="row" 
+          justifyContent="space-between"
+          flex={1}
+          overflow="auto">
           <Sidebar />
-          
-          <Body> <Searchbar/> </Body>
+          <Searchbar/>
           
         </Stack>
       </Box>

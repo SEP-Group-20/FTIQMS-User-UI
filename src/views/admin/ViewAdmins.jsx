@@ -7,20 +7,17 @@ import AdminsTable from './components/AdminsTable';
 import Searchbar from './components/Searchbar'
 
 const viewAdmins = () => {
-      
-  
     return (
-      <Box>
+      <Box display="flex" flexDirection="column" sx={{ minHeight: "100vh" }}>
         <Navbar/>
-        <Stack direction="row" justifyContent="space-between">
-          <Sidebar />
-          
-          <Body> 
-            
+        <Stack  
+          direction="row" 
+          justifyContent="space-between"
+          flex={1}
+          overflow="auto">
+            <Sidebar />
             <Searchbar/>
             <AdminsTable/> 
-        </Body>
-          
         </Stack>
       </Box>
     );

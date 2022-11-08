@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { getAllAdminDetails } from '../../../services/UserService';
 import { useNavigate } from "react-router-dom";
 
 function createData(adminID, Name, Edit, Delete) {
@@ -33,11 +35,12 @@ const rows = [
 export default function BasicTable() {
   const navigate = useNavigate();
   return (
+    // <Box bgcolor="#d1cebd" flex={5} p={2}>
     <TableContainer component={Paper} sx={{ m:5,width:'50%',borderLeft: "1px solid #ffffff4d"
     ,borderTop: "1px solid #ffffff4d",
     backdropFilter: 'blur(10px)',
     boxShadow: '0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 )',
-    borderRadius:'10px', mb: '5vw', width: '70%', padding: '2vw', paddingTop: 0}}>
+    borderRadius:'10px', mb: '5vw', width: '70%', padding: '2vw', paddingTop: 0}} >
       <Table sx={{ width:'100%' }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -69,5 +72,7 @@ export default function BasicTable() {
         </TableBody>
       </Table>
     </TableContainer>
+    // </Box>
   );
 }
+

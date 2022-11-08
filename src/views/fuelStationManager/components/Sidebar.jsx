@@ -1,5 +1,5 @@
 import { AccountBox, Home, LocalGasStation, PlaylistAddCheck } from '@mui/icons-material'
-import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled, Toolbar } from '@mui/material'
 import React from 'react'
 
 const StyledToolBar = styled(Toolbar)({
@@ -21,7 +21,7 @@ const Sidebar = () => {
         </ListItem>
         <Divider component="li" />
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/viewOrders">
+          <ListItemButton component="a" href="fuelStationManager/viewOrderss">
             <ListItemIcon>
               <LocalGasStation />
               <PlaylistAddCheck />
@@ -31,7 +31,7 @@ const Sidebar = () => {
         </ListItem>
         <Divider component="li" />
         <ListItem disablePadding>
-          <ListItemButton component="a" href="/viewOrders">
+          <ListItemButton component="a" href="fuelStationManager/viewOrders">
             <ListItemIcon>
               <LocalGasStation />
             </ListItemIcon>
