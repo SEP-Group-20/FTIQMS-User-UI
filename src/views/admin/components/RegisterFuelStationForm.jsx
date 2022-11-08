@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CheckCircle, LocalGasStation } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Alert, Modal, Stack } from "@mui/material";
-import { getFuelStationDetailsMFE, isFuelStationReal, isFuelStationRegistered, registerFuelStation } from "../../../services/fuelStationServices";
+import { getFuelStationDetailsMFE, isFuelStationReal, isFuelStationRegistered, registerFuelStation } from "../../../services/FuelStationServices";
 import { isEmailRegistered } from "../../../services/UserService";
 
 const REGISTRATION_REGEX = /^[A-Z]{3}\d{7}$/;
