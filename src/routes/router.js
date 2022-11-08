@@ -41,9 +41,9 @@ export function Router() {
         <Route path="/admin/registerAdmin" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterAdmin /></RequireAuth>} />
         <Route path="/admin/fuelStations" element={<RequireAuth allowedRoles={[ADMIN]}><FuelStations /></RequireAuth>} />
         <Route path="/admin/registerFuelStation" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterFuelStation /></RequireAuth>} />
-        <Route path='/admin/SearchUsers' element={<RequireAuth allowedRoles={[ADMIN]}><SearchUsers /></RequireAuth>} />
+        <Route path='/admin/searchUsers' element={<RequireAuth allowedRoles={[ADMIN]}><SearchUsers /></RequireAuth>} />
         <Route path='/admin/viewAdmins' element={<RequireAuth allowedRoles={[ADMIN]}><ViewAdmins /></RequireAuth>} />
-        <Route path='/admin/FuelStationManagerTable' element={<RequireAuth allowedRoles={[ADMIN]}><ViewFSM /></RequireAuth>} />
+        <Route path='/admin/fuelStationManagerTable' element={<RequireAuth allowedRoles={[ADMIN]}><ViewFSM /></RequireAuth>} />
 
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />

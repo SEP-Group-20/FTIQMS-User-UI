@@ -44,7 +44,7 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/admin/SearchUsers">
+              <ListItemButton component="a" href="/admin/searchUsers">
                 <ListItemIcon>
                   <Group />
                 </ListItemIcon>
@@ -91,7 +91,7 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="/admin/SearchUsers" sx={{padding: 1}}>
+              <ListItemButton component="a" href="/admin/searchUsers" sx={{padding: 1}}>
                 <ListItemIcon sx={{minWidth: "24px"}}>
                   <Group />
                 </ListItemIcon>
