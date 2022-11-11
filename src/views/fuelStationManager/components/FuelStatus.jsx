@@ -35,10 +35,12 @@ const FuelStatus = () => {
   const handleFuelUnavailableRequest = async () => {
     // send fuel unavailabe request to backend
     const result = await setFuelStatus({registrationNumber: fuelStationRegistrationNumber, fuel: fuel, status: false});
+
     if (result.data.success)
-      console.log("success");
+      console.log(result.data.message);
     else
       setErrMsg("Making fuel unavailable failed!");
+    
     setFuel("");
     setOpen(false);
   };
