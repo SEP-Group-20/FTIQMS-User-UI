@@ -144,12 +144,8 @@ function AddFuelDeliveryForm() {
         setTimeout(function () {
           return navigate('/fuelStationManager/viewOrders');
         }, 2000);
-      } else {
-        setErrMsg("Fuel Delivery Registration Failed");
-        // setRegistrationNumberStatus(false);
-        // setemailStatus(false);
-        // setOTPStatus(false);        
-      }
+      } else
+        setErrMsg(resOfReg.data.message);
 
     }
   };
