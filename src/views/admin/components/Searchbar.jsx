@@ -6,8 +6,10 @@ import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import { ButtonGroup} from '@mui/material';
 import  { useState } from 'react'
+import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -50,6 +52,17 @@ export default function SearchAppBar() {
       </ButtonGroup>
       <AppBar position="static">
         <Toolbar>
+
+        <Box
+          component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            >
+          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        </Box>
             {/* TODO: Search bar */}
             <Search onClick={e=>setOpen(true)}>
               <SearchIconWrapper>

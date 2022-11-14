@@ -10,7 +10,8 @@ import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
 import { getAllAdminDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
-import AdminDetails from '../AdminDetails';
+// import AdminDetails from '../AdminDetails';
+import AdminDetails from './AdminDetails';
 
 function createData(email, firstName, lastName, mobile, password) {
   return {email, firstName, lastName, mobile, password};

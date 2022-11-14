@@ -50,11 +50,20 @@ const updatePwd = (formData) => {
     });
 };
 
+const getFSMDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFSMDetails",
+        data: formData,
+    });
+}
+
 export {
     getUserName,
     isEmailRegistered,
     registerAdmin,
     getAllAdminDetails,
     getAllFSMDetails,
-    updatePwd
+    updatePwd,
+    getFSMDetails
 };
