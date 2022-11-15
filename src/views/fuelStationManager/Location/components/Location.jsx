@@ -68,6 +68,7 @@ function Location({ initPhase }) {
           title: "set fuel status successfully!",
         });
         if (initPhase) navigate("/fuelStationManager/home");
+        // FIXME - STOP CHANGE THE UI IF WANT TO NAVIGATE
       }
     } catch (err) {
       setWaiting(false);
