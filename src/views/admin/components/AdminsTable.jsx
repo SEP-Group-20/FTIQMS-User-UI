@@ -10,20 +10,20 @@ import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
 import { getAllAdminDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
-// import AdminDetails from '../AdminDetails';
 import AdminDetails from './AdminDetails';
 
 function createData(email, firstName, lastName, mobile, password) {
   return {email, firstName, lastName, mobile, password};
 }
 
-export default function BasicTable() {
+export default function BasicTable(props) {
   const [dataview, setDataView] = useState(false)
   const [itemdata, setItemData] = useState({})
   const [adminDetials, setAdminDetails] = useState([])
   const [errMsg, setErrMsg] = useState("");
 
-  const {auth} = useAuth();
+
+  const {auth, userData} = useAuth();
 
   const userEmail = auth().user.email;
 
@@ -52,6 +52,7 @@ export default function BasicTable() {
     setItemData(value)
     setDataView(true)
   };
+
   
   return (
     <Box bgcolor="#d1cebd" flex={2} p={2}>
@@ -72,15 +73,19 @@ export default function BasicTable() {
             
             <TableCell align='center'>Email</TableCell>
             <TableCell align='center'>Name</TableCell>
-            <TableCell align='center'>View Detais</TableCell>
+            <TableCell align='center'>View Details</TableCell>
             
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow 
+          {rows.map((row) => {
+            var n = row.firstName+" "+row.lastName
+            if(!n.includes(userData) && userData){
+              return null
+            }
+            return <TableRow 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
-              key={row.OrderId}
+              key={row.orderID}
             >
               <TableCell align='center'>{row.email}</TableCell>
               <TableCell align='center'>{row.firstName+" "+row.lastName}</TableCell>
@@ -91,7 +96,7 @@ export default function BasicTable() {
               </TableCell>
               
             </TableRow>
-          ))}
+          })}
         </TableBody>
       </Table>
     </TableContainer>}

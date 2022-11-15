@@ -85,11 +85,11 @@ const Sidebar = () => {
             {/* end of location link */}
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#">
+              <ListItemButton component="a" href="/fuelStationManager/FSMDetails">
                 <ListItemIcon>
                   <AccountBox />
                 </ListItemIcon>
-                <ListItemText primary="Account" />
+                <ListItemText primary="View Account" />
               </ListItemButton>
             </ListItem>
           </List>

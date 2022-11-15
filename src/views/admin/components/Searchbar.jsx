@@ -1,78 +1,91 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import SearchIcon from '@mui/icons-material/Search';
 import { ButtonGroup} from '@mui/material';
-import  { useState } from 'react'
+import  { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import { useAsyncValue } from 'react-router-dom';
+import { AirlineSeatIndividualSuite } from '@mui/icons-material';
+import viewSelectedAdmin from '../viewFilteredUser';
+import viewAdmins from '../ViewAdmins';
+import { useAuth } from '../../../utils/auth';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: 400,
   },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
+  input: {
     marginLeft: theme.spacing(1),
-    width: 'auto',
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
   },
 }));
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-//   position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-export default function SearchAppBar() {
-  // const navigate = useNavigate();
-  // const [isShown, setIsShown] = useState(false);
-  // const handleClick = event => {
-  //   // 👇️ toggle shown state
-  //   setIsShown(current => !current);
-  //   // 👇️ or simply set it to true
-  //   // setIsShown(true);
-  // };
-  const [open, setOpen] = useState(false);
+
+
+export default function SearchAppBar(props) {
+ 
+  const classes = useStyles();
+  const [value, setValue] = useState('');
+  const [viewData, setViewData] = useState(false)
+  const {setuserData} = useAuth();
+  const handleSearch = (val) => {
+    // props.click(val);
+    setuserData(val);
+    console.log(val)
+  }
+
 
   return (
     <Box bgcolor="#d1cebd">
+
+
       <ButtonGroup variant="text" aria-label="text button group" fullWidth>
         <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
         <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/fuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
       </ButtonGroup>
-      <AppBar position="static">
-        <Toolbar>
 
-        <Box
-          component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-            >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box>
-            {/* TODO: Search bar */}
-            <Search onClick={e=>setOpen(true)}>
-              <SearchIconWrapper>
-                <SearchIcon />
-                <Button variant="text">Search User...</Button>
-              </SearchIconWrapper>
-            </Search>
-        </Toolbar>
-      </AppBar>
-      
+      <Box>
+      <Paper component="form" className={classes.root}>
+      <MenuIcon />
+      <InputBase
+        className={classes.input}
+        value = {value}
+        placeholder="Enter User Name"
+        inputProps={{ 'aria-label': 'id no.'}}
+        onChange = {event=>{
+            setValue(event.target.value)
+            handleSearch(event.target.value)
+        }}
+     
+      />
+      <IconButton type="submit" className={classes.iconButton} aria-label="search"  disabled = {viewData} onClick={() => setViewData(true)}>
+        <SearchIcon />
+      </IconButton>
+      <Divider className={classes.divider} orientation="vertical" />
+     
+      </Paper>
+      </Box>
+
     </Box>
   );
 }

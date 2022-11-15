@@ -58,6 +58,14 @@ const getFSMDetails = (formData) => {
     });
 }
 
+const getAdminDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAdminDetails",
+        data: formData,
+    });
+}
+
 export {
     getUserName,
     isEmailRegistered,
@@ -65,5 +73,6 @@ export {
     getAllAdminDetails,
     getAllFSMDetails,
     updatePwd,
-    getFSMDetails
+    getFSMDetails,
+    getAdminDetails
 };

@@ -22,7 +22,7 @@ export default function BasicTable() {
   const [FSMDetials, setFSMDetails] = useState([])
   const [errMsg, setErrMsg] = useState("");
 
-  const {auth} = useAuth();
+  const {auth,userData} = useAuth();
 
   const userEmail = auth().user.email;
 
@@ -76,8 +76,12 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow 
+          {rows.map((row) => {
+            var n = row.firstName+" "+row.lastName
+            if(!n.includes(userData) && userData){
+              return null
+            }
+            return <TableRow 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
               key={row.OrderId}
             >
@@ -90,7 +94,7 @@ export default function BasicTable() {
               </TableCell>
               
             </TableRow>
-          ))}
+})}
         </TableBody>
       </Table>
     </TableContainer>}
