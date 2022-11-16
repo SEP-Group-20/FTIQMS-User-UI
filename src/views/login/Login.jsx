@@ -19,7 +19,6 @@ import { loginUser } from "../../services/AuthServices";
 import { useAuth } from "../../utils/auth";
 import { MANAGER, ADMIN } from "../../utils/RolesList";
 import PreLoginAppBar from "../../components/PreLoginAppBar";
-import { green, purple } from "@mui/material/colors";
 
 const theme = createTheme({
   // palette: {
@@ -123,7 +122,7 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Log In
             </Typography>
-            {errMsg != "" ? (
+            {errMsg !== "" ? (
               <Stack sx={{ width: "100%" }} spacing={2}>
                 <Alert severity="error">{errMsg}</Alert>
               </Stack>
