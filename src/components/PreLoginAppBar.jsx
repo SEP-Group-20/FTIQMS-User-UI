@@ -12,7 +12,7 @@ export default function PreLoginAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ background: "primary" }}>
+      <AppBar position="static" sx={{ background: "#d63447" }}>
         <Toolbar>
           <IconButton
             size="large"
