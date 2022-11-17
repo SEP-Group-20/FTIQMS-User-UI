@@ -106,7 +106,6 @@ function AddFuelDeliveryForm() {
     event.preventDefault();
 
     if (!orderIDStatus && !deliveryIDStatus) {
-      console.log("verifying fuel order id and fuel delivery id");
       //call the api here to validate the fuel order or the fuel delivery has not been registered before
       const fuelDeliveryRegistered = await isFuelDeliveryRegistered({orderID: orderID, deliveryID: deliveryID});
 

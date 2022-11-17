@@ -21,8 +21,8 @@ import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
 import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
 import PWDResetter from "../views/PWDResetter/PWDResetter";
 import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountSetter";
-import PreLoginAppBar from "../components/PreLoginAppBar";
 import Home from "../views/LandingPage/Home";
+import AccountDetailsView from "../views/fuelStationManager/ViewAccountDetails";
 
 export function Router() {
   return (
@@ -39,6 +39,7 @@ export function Router() {
         <Route path='/fuelStationManager/fuelStatus' element={<RequireAuth allowedRoles={[MANAGER]}><FSMFuelStatus /></RequireAuth>} />
         <Route path='/fuelStationManager/addFuelDelivery' element={<RequireAuth allowedRoles={[MANAGER]}><AddFuelDelivery /></RequireAuth>} />
         <Route path='/fuelStationManager/location' element={<RequireAuth allowedRoles={[MANAGER]}><LocationSetter /></RequireAuth>} />
+        <Route path='/fuelStationManager/viewAccount' element={<RequireAuth allowedRoles={[MANAGER]}><AccountDetailsView /></RequireAuth>} />
 
         <Route path="/admin/home" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
         <Route path="/admin/registerAdmin" element={<RequireAuth allowedRoles={[ADMIN]}><RegisterAdmin /></RequireAuth>} />

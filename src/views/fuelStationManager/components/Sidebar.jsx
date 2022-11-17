@@ -85,7 +85,7 @@ const Sidebar = () => {
             {/* end of location link */}
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#">
+              <ListItemButton component="a" href="/fuelStationManager/viewAccount">
                 <ListItemIcon>
                   <AccountBox />
                 </ListItemIcon>
@@ -149,7 +149,7 @@ const Sidebar = () => {
             {/* ending of location */}
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#" sx={{ padding: 1 }}>
+              <ListItemButton component="a" href="/fuelStationManager/viewAccount" sx={{ padding: 1 }}>
                 <ListItemIcon sx={{ minWidth: "24px" }}>
                   <AccountBox />
                 </ListItemIcon>
