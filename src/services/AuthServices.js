@@ -4,7 +4,7 @@ import config from '../config/default';
 import Token from './Token';
 
 
-const APIEndPoint = "http://localhost:3001/api/auth";
+const APIEndPoint = "/api/auth";
 
 const loginUser = (formData) => {
     return axios({

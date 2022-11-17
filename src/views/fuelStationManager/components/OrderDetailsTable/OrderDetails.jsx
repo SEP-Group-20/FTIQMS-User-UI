@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useAuth } from '../../../../utils/auth';
 import { getAllFuelDeliveryDetails } from '../../../../services/FuelStationServices';
 import OrderDetails from '../../OrderDetails';
@@ -54,9 +54,6 @@ export default function BasicTable() {
   
   return (
     <Box bgcolor="#d1cebd" flex={2} p={2}>
-      <Typography variant='h2' sx={{ display: "flex", justifyContent: "center", paddingBottom:2}}>
-        Fuel Deliveries
-      </Typography>
       {!dataview &&  
       <TableContainer component={Paper} sx={{
         borderLeft: "1px solid #ffffff4d",

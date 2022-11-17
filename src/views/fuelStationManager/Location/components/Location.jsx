@@ -115,8 +115,9 @@ function Location({ initPhase }) {
         <>
           {!initPhase && (
             <Button
-              sx={{ width: "50%", color: "red" }}
-              variant="outlined"
+              sx={{ width: "50%"}}
+              variant="contained"
+              color="error"
               onClick={handleCancel}
             >
               Cancel
@@ -143,7 +144,7 @@ function Map({ pos, clickHandler, isChanging }) {
     <GoogleMap
       zoom={8}
       center={pos.lat ? pos : SRI_LANKA}
-      mapContainerStyle={{ width: "100%", height: "95vh" }}
+      mapContainerStyle={{ width: "100%", height: "70vh" }}
       onClick={(event) => {
         if (isChanging) {
           setClicked(event.latLng.toJSON());

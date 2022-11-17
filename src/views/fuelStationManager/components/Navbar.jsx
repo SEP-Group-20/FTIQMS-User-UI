@@ -92,7 +92,7 @@ const Navbar = () => {
           horizontal: 'right',
         }}
       >
-        <MenuItem component="a" href="#">Profile</MenuItem>
+        <MenuItem component="a" href="/fuelStationManager/viewAccount">Profile</MenuItem>
         <MenuItem component="a" onClick={logoutUser}>Logout</MenuItem>
       </Menu>
     </AppBar>
