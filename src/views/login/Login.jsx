@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -32,9 +32,7 @@ const theme = createTheme({
 });
 
 export default function Login() {
-  const { auth, setAuth, logout } = useAuth();
-  const emailRef = useRef();
-  const errRef = useRef();
+  const { auth, setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -60,7 +58,7 @@ export default function Login() {
         else if (auth().user.role === ADMIN) home = "/admin/home";
         else {
           throw new Error("InvalidAccountError");
-          logout();
+          // logout();
         }
         var from;
         if (location.state?.from) {
@@ -168,7 +166,7 @@ export default function Login() {
                   <Link href="#" variant="body2"></Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link onClick={() => navigate("/forgotPWD")} variant="body2">
                     {"Forgot password?"}
                   </Link>
                 </Grid>
