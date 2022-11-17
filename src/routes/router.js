@@ -21,8 +21,8 @@ import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
 import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
 import PWDResetter from "../views/PWDResetter/PWDResetter";
 import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountSetter";
-import PreLoginAppBar from "../components/PreLoginAppBar";
 import Home from "../views/LandingPage/Home";
+import ForgotPWD from "../views/ForgotPWD/ForgotPWD";
 
 export function Router() {
   return (
@@ -31,6 +31,7 @@ export function Router() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
         <Route path='/Home' element={<Home />} />
+        <Route path='/forgotPWD' element={<ForgotPWD />} />
         <Route path="/updatePwd" element={<RequireAuth allowedRoles={[MANAGER, ADMIN]}><PWDResetter /></RequireAuth>} />
 
         <Route path="/fuelStationManager/home" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>} />

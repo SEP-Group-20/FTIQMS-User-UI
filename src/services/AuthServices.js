@@ -33,7 +33,7 @@ const refreshLogin = async () => {
         });
 
         Token.removeAccessToken();
-        const bearer_token = response.data.access_token;
+        // const bearer_token = response.data.access_token;
         Token.setAccessToken(response.data.access_token);
     }
     catch (err) {
@@ -41,4 +41,4 @@ const refreshLogin = async () => {
     }
 }
 
-export { loginUser, logoutBackend,refreshLogin };
+export { loginUser, logoutBackend, refreshLogin };
