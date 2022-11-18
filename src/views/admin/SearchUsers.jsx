@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Box, Stack } from '@mui/system';
 import Searchbar from './components/Searchbar'
+import UserTable from './components/userTable';
 
 const admin_searchUsers = () => {
   return (
@@ -12,6 +13,7 @@ const admin_searchUsers = () => {
         <Sidebar />
         <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
           <Searchbar/>
+          <UserTable/>
         </Stack>
       </Stack>
     </Box>

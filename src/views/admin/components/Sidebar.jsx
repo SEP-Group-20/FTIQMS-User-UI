@@ -62,11 +62,11 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#">
+              <ListItemButton component="a" href="/admin/viewAccountDetails">
                 <ListItemIcon>
                   <AccountBox />
                 </ListItemIcon>
-                <ListItemText primary="Account" />
+                <ListItemText primary="View Account" />
               </ListItemButton>
             </ListItem>
           </List>
