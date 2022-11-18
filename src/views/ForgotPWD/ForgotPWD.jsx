@@ -13,6 +13,7 @@ import { Stack, Alert } from "@mui/material";
 import PreLoginAppBar from "../../components/PreLoginAppBar";
 import Tooltip from "@mui/material/Tooltip";
 import config from "../../config/default";
+import Swal from "sweetalert2";
 
 import {
   sendSignInLinkToEmail,
@@ -20,7 +21,8 @@ import {
   signInWithEmailLink,
 } from "firebase/auth";
 import { authentication } from "../../services/firebaseService";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { isEmailRegistered, resetUserPwd } from "../../services/UserService";
 
 const PWD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
@@ -29,6 +31,7 @@ const theme = createTheme();
 
 export default function ForgotPWD() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [emailStatus, setEmailStatus] = React.useState(false);
   const [verified, setverified] = React.useState(false);
@@ -88,9 +91,11 @@ export default function ForgotPWD() {
     event.preventDefault();
     setErrMsg("");
     const data = new FormData(event.currentTarget);
-    if (!emailStatus) {
+    if (!emailStatus && !location.search) {
       try {
         const temp_email = data.get("email");
+        const existance = await isEmailRegistered({ email: temp_email });
+        if (!existance.data.success) throw new Error("EmailNotExixsts");
         setEmail(temp_email);
         console.log(data.get("email"));
         //here send the email
@@ -104,18 +109,41 @@ export default function ForgotPWD() {
             // Save the email locally so you don't need to ask the user for it again
             // if they open the link on the same device.
             console.log("send success");
+            setEmailStatus(true);
             window.localStorage.setItem("emailForSignIn", temp_email);
             // ...
           })
           .catch((error) => {
+            setErrMsg("Couldn't send the email for resetting password!");
             console.log(error);
             // ...
           });
-
-        setEmailStatus(true);
-      } catch (err) {}
+      } catch (err) {
+        if (err.message === "EmailNotExixsts") {
+          setErrMsg("The email you entered is not registered in the system!");
+        } else if (!err?.response) {
+          setErrMsg("Something went wrong!");
+        } else if (err.response?.status === 400) {
+          setErrMsg("Missing Email or Password!");
+        } else if (err.response?.status === 401) {
+          setErrMsg("Invalid username, password pair!");
+        } else {
+          setErrMsg("No server response!");
+        }
+      }
     } else {
-      console.log("resetPwd here"); 
+      const pwdResetResult = await resetUserPwd({
+        email: email,
+        password: pwd,
+      });
+
+      Swal.fire({
+        icon: "success",
+        title: "Password reset was sucessfull!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/login");
     }
   };
 
@@ -176,6 +204,15 @@ export default function ForgotPWD() {
                   </Grid>
                 )}
 
+                {emailStatus && (
+                  <Grid item xs={10}>
+                    <Typography>
+                      An email with password reset link was sent to your email.
+                      Try it out.
+                    </Typography>
+                  </Grid>
+                )}
+
                 {verified && (
                   <Grid item xs={10}>
                     <Tooltip
@@ -217,23 +254,25 @@ export default function ForgotPWD() {
                   </Grid>
                 )}
 
-                <Grid item xs={10}>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mb: 2 }}
-                    disabled={
-                      verified
-                        ? pwdValidity && cnfrmValidity
-                          ? false
-                          : true
-                        : false
-                    }
-                  >
-                    Continue
-                  </Button>
-                </Grid>
+                {!emailStatus && (
+                  <Grid item xs={10}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      sx={{ mb: 2 }}
+                      disabled={
+                        verified
+                          ? pwdValidity && cnfrmValidity
+                            ? false
+                            : true
+                          : false
+                      }
+                    >
+                      Continue
+                    </Button>
+                  </Grid>
+                )}
               </Grid>
             </Box>
           </Box>

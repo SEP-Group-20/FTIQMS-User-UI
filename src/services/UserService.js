@@ -58,6 +58,13 @@ const resetFSMPassword = (formData) => {
     });
 };
 
+const resetUserPwd = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetUserPwd",
+        data: formData,
+    });
+};
 export {
     getUserName,
     isEmailRegistered,
@@ -65,5 +72,6 @@ export {
     getAllAdminDetails,
     getAllFSMDetails,
     updatePwd,
-    resetFSMPassword
+    resetFSMPassword,
+    resetUserPwd
 };
