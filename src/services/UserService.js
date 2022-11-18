@@ -50,11 +50,28 @@ const updatePwd = (formData) => {
     });
 };
 
+const resetFSMPassword = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetFSMPassword",
+        data: formData,
+    });
+};
+
+const resetUserPwd = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetUserPwd",
+        data: formData,
+    });
+};
 export {
     getUserName,
     isEmailRegistered,
     registerAdmin,
     getAllAdminDetails,
     getAllFSMDetails,
-    updatePwd
+    updatePwd,
+    resetFSMPassword,
+    resetUserPwd
 };
