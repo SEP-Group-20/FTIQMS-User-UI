@@ -107,7 +107,7 @@ const Sidebar = () => {
             </ListItem>
             <Divider component="li" />
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#" sx={{padding: 1}}>
+              <ListItemButton component="a" href="/admin/viewAccountDetails" sx={{padding: 1}}>
                 <ListItemIcon sx={{minWidth: "24px"}}>
                   <AccountBox />
                 </ListItemIcon>
