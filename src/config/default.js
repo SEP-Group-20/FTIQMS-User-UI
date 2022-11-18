@@ -1,14 +1,14 @@
 export default {
-    DOMAIN_NAME: "http://localhost:3001",
+    DOMAIN_NAME: process.env.REACT_APP_SERVER_DOMAIN_NAME,
     actionCodeSettings: {
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be in the authorized domains list in the Firebase Console.
-        url: 'http://localhost:3000/forgotPwd',
+        url: process.env.REACT_APP_DOMAIN_NAME + '/forgotPwd',
         // This must be true.
         handleCodeInApp: true,
     },
     firebaseConfig: {
-        apiKey: "AIzaSyDw0Cidy-HUfGXxW1BBqeRT3cMbuvOgC08",
+        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
         authDomain: "ftiqms-a1061.firebaseapp.com",
         projectId: "ftiqms-a1061",
         storageBucket: "ftiqms-a1061.appspot.com",
