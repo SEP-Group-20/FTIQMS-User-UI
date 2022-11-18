@@ -10,6 +10,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { themeSettings } from "./theme";
 // import BarChart from "./BarChart"; 
 import StatBox from "./StatBox";
+// import { mockOrderDetails} from "../data/mockData";
 import React, { useEffect, useState } from 'react'
 import { useAuth } from "../../../utils/auth";
 import { getFuelStationCount } from "../../../services/FuelStationServices";
@@ -77,10 +78,6 @@ useEffect(() => {
 
     fetchRecentOrderDetails();
   }, []);
-
-console.log(recentOrderDetails);
-
-
 
     return(
         <ColorModeContext.Provider value={colorMode}>
@@ -194,35 +191,38 @@ console.log(recentOrderDetails);
                         
                 </Box>
 
-                {mockOrderDetails.map((order, i) =>(
-                    <Box
-                            key ={`${order.orderID} = ${i}`}
-                            display = "flex"
-                            justifyContent= "space-between"
-                            alignItems = "center"
-                            borderBottom = {`2px solid ${colors.primary[500]}`}
-                            p="15px"
-                            >
+                { recentOrderDetails !== "" ?
+                    <>
+                    {recentOrderDetails.map((order, i) =>(
+                        <Box
+                                key ={`${order.orderID} = ${i}`}
+                                display = "flex"
+                                justifyContent= "space-between"
+                                alignItems = "center"
+                                borderBottom = {`2px solid ${colors.primary[500]}`}
+                                p="15px"
+                                >
 
-                            <Box>
-                            <Typography variant = "h6" fontWeight= "600" color = {colors.greenAccent[500]}>
-                            {order.orderID}
-                            </Typography>
-                            <Typography variant = "h6" fontWeight= "600" color = {colors.grey[100]}>
-                            {order.fuelStation}
-                            </Typography>
-                            </Box>
-                            <Box color = {colors.grey[100]} alignItems = "center"> 
-                                {order.orderDate}
-                            </Box>
-                            <Box backgroundColor = {colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                                ${order.value}
-                            </Box>
-                    </Box>
+                                <Box>
+                                <Typography variant = "h6" fontWeight= "600" color = {colors.greenAccent[500]}>
+                                {order.orderID}
+                                </Typography>
+                                <Typography variant = "h6" fontWeight= "600" color = {colors.grey[100]}>
+                                {order.fuelStation}
+                                </Typography>
+                                </Box>
+                                <Box color = {colors.grey[100]} alignItems = "center"> 
+                                    {order.orderDate.split("T")[0]}
+                                </Box>
+                                <Box backgroundColor = {colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
+                                    ${order.value}
+                                </Box>
+                        </Box>
 
-
-                ))}
-
+                    
+                    ))}
+                    </>
+                :null}
                 
             </Box>
         </Box>

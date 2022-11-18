@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 400,
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -46,41 +45,37 @@ export default function SearchAppBar(props) {
   const [viewData, setViewData] = useState(false)
   const {setuserData} = useAuth();
   const handleSearch = (val) => {
-    // props.click(val);
     setuserData(val);
-    console.log(val)
   }
 
 
   return (
     <Box bgcolor="#d1cebd">
-
-
       <ButtonGroup variant="text" aria-label="text button group" fullWidth>
         <Button sx={{backgroundColor: "#5F9EA0", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
         <Button sx={{backgroundColor: "#5F9EA0", color: "black", borderRadius: 0}} component="a" href="/admin/fuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
       </ButtonGroup>
 
       <Box>
-      <Paper component="form" className={classes.root}>
-      <MenuIcon />
-      <InputBase
-        className={classes.input}
-        value = {value}
-        placeholder="Enter User Name"
-        inputProps={{ 'aria-label': 'id no.'}}
-        onChange = {event=>{
-            setValue(event.target.value)
-            handleSearch(event.target.value)
-        }}
-     
-      />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search"  disabled = {viewData} onClick={() => setViewData(true)}>
-        <SearchIcon />
-      </IconButton>
-      <Divider className={classes.divider} orientation="vertical" />
-     
-      </Paper>
+        <Paper component="form" className={classes.root}>
+          <MenuIcon />
+          <InputBase
+            className={classes.input}
+            value = {value}
+            placeholder="Enter User Name"
+            inputProps={{ 'aria-label': 'id no.'}}
+            onChange = {event=>{
+                setValue(event.target.value)
+                handleSearch(event.target.value)
+            }}
+            sx={{width: '100%'}}
+          />
+          <IconButton type="submit" className={classes.iconButton} aria-label="search"  disabled = {viewData} onClick={() => setViewData(true)}>
+            <SearchIcon />
+          </IconButton>
+          <Divider className={classes.divider} orientation="vertical" />
+        
+          </Paper>
       </Box>
 
     </Box>

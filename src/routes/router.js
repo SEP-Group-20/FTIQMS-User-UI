@@ -21,7 +21,6 @@ import FSMFuelStatus from "../views/fuelStationManager/FSMFuelStatus";
 import LocationSetter from "../views/fuelStationManager/Location/LocationSetter";
 import PWDResetter from "../views/PWDResetter/PWDResetter";
 import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountSetter";
-import FSMDetails from "../views/fuelStationManager/FSMViewAccount";
 import ViewAdminDetails from "../views/admin/ViewAdminDetails";
 import Home from "../views/LandingPage/Home";
 import ForgotPWD from "../views/ForgotPWD/ForgotPWD";
@@ -46,7 +45,6 @@ export function Router() {
         <Route path='/fuelStationManager/fuelStatus' element={<RequireAuth allowedRoles={[MANAGER]}><FSMFuelStatus /></RequireAuth>}/>
         <Route path='/fuelStationManager/addFuelDelivery' element={<RequireAuth allowedRoles={[MANAGER]}><AddFuelDelivery /></RequireAuth>}/>
         <Route path='/fuelStationManager/location' element={<RequireAuth allowedRoles={[MANAGER]}><LocationSetter /></RequireAuth>}/>
-        <Route path='/fuelStationManager/FSMDetails' element={<RequireAuth allowedRoles={[MANAGER]}><FSMDetails /></RequireAuth>}/>
         <Route path='/fuelStationManager/viewAccount' element={<RequireAuth allowedRoles={[MANAGER]}><AccountDetailsView /></RequireAuth>} />
 
 
