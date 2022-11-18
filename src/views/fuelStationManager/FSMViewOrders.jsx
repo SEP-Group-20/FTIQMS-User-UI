@@ -5,6 +5,7 @@ import { Box, Stack } from '@mui/system';
 import Table from './components/OrderDetailsTable/OrderDetails'
 import { Button, Tooltip } from '@mui/material';
 import { Add } from '@mui/icons-material';
+import Topbar from './components/Topbar';
     
 const FSMViewOrders = () => {
   return (
@@ -13,6 +14,7 @@ const FSMViewOrders = () => {
       <Stack direction="row" justifyContent="space-between" flex={1} overflow="auto">
         <Sidebar />
         <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
+          <Topbar heading="Fuel Deliveries" goto="/fuelStationManager/home"/>
           <Table/>
         </Stack>
       </Stack>

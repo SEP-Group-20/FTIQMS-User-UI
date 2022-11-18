@@ -4,7 +4,7 @@ import React from "react";
 import AdminHome from "../views/admin/AdminHome";
 import FSMViewOrders from "../views/fuelStationManager/FSMViewOrders";
 import RequireAuth from '../utils/requireAuth';
-import {ADMIN,MANAGER} from "../utils/RolesList";
+import { ADMIN, MANAGER } from "../utils/RolesList";
 import SearchUsers from '../views/admin/SearchUsers';
 import ViewAdmins from '../views/admin/ViewAdmins';
 import ViewFSM from '../views/admin/ViewFuelStationManager';
@@ -23,15 +23,22 @@ import PWDResetter from "../views/PWDResetter/PWDResetter";
 import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountSetter";
 import FSMDetails from "../views/fuelStationManager/FSMViewAccount";
 import ViewAdminDetails from "../views/admin/ViewAdminDetails";
+import Home from "../views/LandingPage/Home";
+import ForgotPWD from "../views/ForgotPWD/ForgotPWD";
+import AccountDetailsView from "../views/fuelStationManager/ViewAccountDetails";
+
 
 
 export function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Login />} />
+        <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login />} />
-        <Route path="/updatePwd" element={<RequireAuth allowedRoles={[MANAGER,ADMIN]}><PWDResetter /></RequireAuth>}/>
+        <Route path='/Home' element={<Home />} />
+        <Route path='/forgotPWD' element={<ForgotPWD />} />
+        <Route path="/updatePwd" element={<RequireAuth allowedRoles={[MANAGER, ADMIN]}><PWDResetter /></RequireAuth>} />
+
 
         <Route path="/fuelStationManager/home" element={<RequireAuth allowedRoles={[MANAGER]}><FuelStationManagerHome /></RequireAuth>}/>
         <Route path="/fuelStationManager/setFuelStatus" element={<RequireAuth allowedRoles={[MANAGER]}><FuelAmountSetter /></RequireAuth>}/>
@@ -40,6 +47,7 @@ export function Router() {
         <Route path='/fuelStationManager/addFuelDelivery' element={<RequireAuth allowedRoles={[MANAGER]}><AddFuelDelivery /></RequireAuth>}/>
         <Route path='/fuelStationManager/location' element={<RequireAuth allowedRoles={[MANAGER]}><LocationSetter /></RequireAuth>}/>
         <Route path='/fuelStationManager/FSMDetails' element={<RequireAuth allowedRoles={[MANAGER]}><FSMDetails /></RequireAuth>}/>
+        <Route path='/fuelStationManager/viewAccount' element={<RequireAuth allowedRoles={[MANAGER]}><AccountDetailsView /></RequireAuth>} />
 
 
         <Route path="/admin/home" element={<RequireAuth allowedRoles={[ADMIN]}><AdminHome /></RequireAuth>} />
@@ -52,8 +60,8 @@ export function Router() {
         <Route path='/admin/viewAccountDetails' element={<RequireAuth allowedRoles={[ADMIN]}><ViewAdminDetails /></RequireAuth>} />
        
 
-        <Route exact path='contact' element={<Contact />} />
-        <Route exact path='unauthorized' element={<Unauthorized />} />
+        <Route exact path='/contact' element={<Contact />} />
+        <Route exact path='/unauthorized' element={<Unauthorized />} />
         <Route exact path='*' element={<NoPage />} />
 
       </Routes>

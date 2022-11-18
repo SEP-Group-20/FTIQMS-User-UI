@@ -36,9 +36,7 @@ const FuelStatus = () => {
     // send fuel unavailabe request to backend
     const result = await setFuelStatus({registrationNumber: fuelStationRegistrationNumber, fuel: fuel, status: false});
 
-    if (result.data.success)
-      console.log(result.data.message);
-    else
+    if (!(result.data.success))
       setErrMsg("Making fuel unavailable failed!");
     
     setFuel("");
@@ -98,9 +96,6 @@ const FuelStatus = () => {
 
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2} >
-      <Typography variant='h2' sx={{ display: "flex", justifyContent: "center", marginBottom: 2}}>
-        Fuel Status
-      </Typography>
       {errMsg !== "" ? (
         // error
         <Stack sx={{ width: "100%" }} spacing={2}>

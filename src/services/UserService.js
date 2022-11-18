@@ -1,6 +1,6 @@
 import axios from './HttpsServices';
 
-const APIEndPoint = "http://localhost:3001/api/user";
+const APIEndPoint = "/api/user";
 
 const getUserName = (formData) => {
     return axios({
@@ -58,6 +58,7 @@ const updatePwd = (formData) => {
     });
 };
 
+
 const getFSMDetails = (formData) => {
     return axios({
         method: "post",
@@ -90,6 +91,23 @@ const getCustomerCount = (formData) => {
     });
 }
 
+
+const resetFSMPassword = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetFSMPassword",
+        data: formData,
+    });
+};
+
+const resetUserPwd = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetUserPwd",
+        data: formData,
+    });
+};
+
 export {
     getUserName,
     isEmailRegistered,
@@ -101,5 +119,8 @@ export {
     getAdminDetails,
     getAllUserDetails,
     getFSMCount,
-    getCustomerCount
+    getCustomerCount,
+    resetFSMPassword,
+    resetUserPwd
+
 };

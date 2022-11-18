@@ -6,6 +6,7 @@ import Location from "./components/Location";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../utils/auth";
 import { SET_FUEL_STATUS } from "../../../utils/ManagerStatuses";
+import Topbar from "../components/Topbar";
 
 const LocationSetter = () => {
   const { user } = useAuth().auth();
@@ -29,7 +30,10 @@ const LocationSetter = () => {
         overflow="auto"
       >
         <Sidebar />
-        <Location initPhase={(user.status === SET_FUEL_STATUS)?true:false}/>
+        <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
+          <Topbar heading="Fuel Station Location" goto="/fuelStationManager/home"/>
+          <Location initPhase={(user.status === SET_FUEL_STATUS)?true:false}/>
+        </Stack>
       </Stack>
     </Box>
   );

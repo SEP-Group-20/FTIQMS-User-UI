@@ -1,6 +1,14 @@
 import axios from './HttpsServices';
 
-const APIEndPoint = "http://localhost:3001/api/fuelStation";
+const APIEndPoint = "/api/fuelStation";
+
+const getFuelStationDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFuelStationDetails",
+        data: formData,
+    });
+}
 
 const isFuelStationRegistered = (formData) => {
     return axios({
@@ -30,14 +38,6 @@ const getFuelStationRegistrationNumber = (formData) => {
     return axios({
         method: "post",
         url: APIEndPoint + "/getFuelStationRegistrationNumber",
-        data: formData,
-    });
-};
-
-const getFuelStationDetails = (fid, formData) => {
-    return axios({
-        method: "post",
-        url: APIEndPoint + "/getFuelStationDetails/" + fid,
         data: formData,
     });
 };
@@ -97,6 +97,21 @@ const setInitalFuelStat = (formData) => {
     });
 };
 
+const getDashboardDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getDashboardDetails",
+        data: formData,
+    });
+};
+
+const resetFSSPassword = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetFSSPassword",
+        data: formData,
+    });
+};
 
 const getFuelStationCount = (formData) => {
     return axios({
@@ -121,5 +136,8 @@ export {
     getFuelStationLocation,
     setFuelStationLocation,
     setInitalFuelStat,
-    getFuelStationCount
+    getFuelStationCount,
+    getDashboardDetails,
+    resetFSSPassword
+
 };

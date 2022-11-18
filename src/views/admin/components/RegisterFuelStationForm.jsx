@@ -92,7 +92,6 @@ function RegisterFuelStationForm() {
     event.preventDefault();
 
     if (!registrationNumberStatus && !emailStatus) {
-      console.log("verifying registration number and email");
       //call the api here to validate the fuel station or the email has not been registered before
       const fuelStationRegistered = await isFuelStationRegistered({ registrationNumber: registrationNumber});
       const emailRegistered = await isEmailRegistered({ email: email });

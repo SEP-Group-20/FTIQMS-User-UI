@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -18,31 +18,21 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loginUser } from "../../services/AuthServices";
 import { useAuth } from "../../utils/auth";
 import { MANAGER, ADMIN } from "../../utils/RolesList";
+import PreLoginAppBar from "../../components/PreLoginAppBar";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Our Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+const theme = createTheme({
+  // palette: {
+  //   primary: {
+  //     main: "#d63447",
+  //   },
+  //   secondary: {
+  //     main: green[500],
+  //   },
+  // },
+});
 
 export default function Login() {
-  const { auth, setAuth, logout } = useAuth();
-  const emailRef = useRef();
-  const errRef = useRef();
+  const { auth, setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -68,7 +58,7 @@ export default function Login() {
         else if (auth().user.role === ADMIN) home = "/admin/home";
         else {
           throw new Error("InvalidAccountError");
-          logout();
+          // logout();
         }
         var from;
         if (location.state?.from) {
@@ -96,78 +86,95 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+    <div
+      style={{
+        backgroundImage: `url("https://images.pexels.com/photos/9216590/pexels-photo-9216590.jpeg?cs=srgb&dl=pexels-erik-mclean-9216590.jpg&fm=jpg&_gl=1*b55um7*_ga*NjE4NDcwNTA3LjE2Njg1MzM4MTY.*_ga_8JE65Q40S6*MTY2ODUzMzgxNy4xLjEuMTY2ODUzMzk5MS4wLjAuMA..")`,
+        backgroundSize: "100%",
+        height: "100vh",
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <PreLoginAppBar />
+        <Container
+          component="main"
+          maxWidth="xs"
+          xs={{
+            backgroundColor: "#000000",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Log In
-          </Typography>
-          {errMsg != "" ? (
-            <Stack sx={{ width: "100%" }} spacing={2}>
-              <Alert severity="error">{errMsg}</Alert>
-            </Stack>
-          ) : null}
+          <CssBaseline />
           <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              backgroundColor: `rgba(255, 255, 255, 0.8)`,
+              padding: "20px",
+              borderRadius: "15px",
+            }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Log In
+            </Typography>
+            {errMsg !== "" ? (
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="error">{errMsg}</Alert>
+              </Stack>
+            ) : null}
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
             >
-              Login
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2"></Link>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                autoComplete="current-password"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Login
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2"></Link>
+                </Grid>
+                <Grid item>
+                  <Link onClick={() => navigate("/forgotPWD")} variant="body2">
+                    {"Forgot password?"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Forgot password?"}
-                </Link>
-              </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }

@@ -21,7 +21,7 @@ const SRI_LANKA = {
 
 function Location({ initPhase }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDiHGf2cG7mFOUa4-2AXbY4-teME8pfK8Y",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
   });
 
   const { auth } = useAuth();
@@ -68,6 +68,7 @@ function Location({ initPhase }) {
           title: "set fuel status successfully!",
         });
         if (initPhase) navigate("/fuelStationManager/home");
+        // FIXME - STOP CHANGE THE UI IF WANT TO NAVIGATE
       }
     } catch (err) {
       setWaiting(false);
@@ -114,8 +115,9 @@ function Location({ initPhase }) {
         <>
           {!initPhase && (
             <Button
-              sx={{ width: "50%", color: "red" }}
-              variant="outlined"
+              sx={{ width: "50%" }}
+              variant="contained"
+              color="error"
               onClick={handleCancel}
             >
               Cancel
@@ -142,7 +144,7 @@ function Map({ pos, clickHandler, isChanging }) {
     <GoogleMap
       zoom={8}
       center={pos.lat ? pos : SRI_LANKA}
-      mapContainerStyle={{ width: "100%", height: "95vh" }}
+      mapContainerStyle={{ width: "100%", height: "70vh" }}
       onClick={(event) => {
         if (isChanging) {
           setClicked(event.latLng.toJSON());
