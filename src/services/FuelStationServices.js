@@ -98,6 +98,16 @@ const setInitalFuelStat = (formData) => {
 };
 
 
+const getFuelStationCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFuelStationCount",
+        data: formData,
+    });
+};
+
+
+
 export {
     isFuelStationRegistered,
     isFuelStationReal,
@@ -110,5 +120,6 @@ export {
     getAllFuelDeliveryDetails,
     getFuelStationLocation,
     setFuelStationLocation,
-    setInitalFuelStat
+    setInitalFuelStat,
+    getFuelStationCount
 };

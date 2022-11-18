@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../utils/auth';
 import { Box, Stack } from '@mui/system';
-import { Alert, Button, List, ListItem, Typography } from '@mui/material';
+import { Alert, Button, List, ListItem, Typography,  useTheme } from '@mui/material';
 import { getAdminDetails } from '../../../services/UserService';
+import { tokens } from "../components/theme";
 
 function AdminDetails() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.colors);
   const [errMsg, setErrMsg] = useState("");
   const [adminDetails, setAdminDetails] = useState([]);
 
@@ -30,7 +33,14 @@ function AdminDetails() {
   // display the detials of the fuel order, error messages
   return (
     <Box bgcolor="#d1cebd" flex={5} p={2} >
-    <Box bgcolor="white" flex={5} p={3} sx={{ borderRadius: '9px' }}>
+    <Box bgcolor="white" flex={5} p={3} sx={{
+        borderLeft: "1px solid #ffffff4d",
+        borderTop: "1px solid #ffffff4d",
+        backdropFilter: 'blur(10px)',
+        boxShadow: '0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 )',
+        borderRadius:'10px'
+      }}>
+      
       {errMsg !== "" ? (
         // error
         <Stack sx={{ width: "100%" }} spacing={2}>
@@ -41,7 +51,7 @@ function AdminDetails() {
         <>
           <List>
             <ListItem>
-              <Typography variant='h6' display="inline" width="50%" mr={2}>
+              <Typography variant='h6' display="inline" width="50%" mr={2} >
                 Email
               </Typography>
               <Typography variant='h6' display="inline">
@@ -52,7 +62,7 @@ function AdminDetails() {
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant='h6' display="inline" width="50%" mr={2}>
+              <Typography variant='h6' display="inline" width="50%" mr={2} sx = {{color : 'black'}}>
                 First Name
               </Typography>
               <Typography variant='h6' display="inline">

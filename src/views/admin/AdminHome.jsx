@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Body from './components/Body';
 import { Box, Stack } from '@mui/system';
+import Dashboard from './components/AdminDashboard';
 
 const AdminHome = () => {
   return (
@@ -10,7 +11,9 @@ const AdminHome = () => {
       <Navbar/>
       <Stack direction="row" justifyContent="space-between" flex={1} overflow="auto">
         <Sidebar />
-        <Body />
+        <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
+          <Dashboard />
+        </Stack>
       </Stack>
     </Box>
   )

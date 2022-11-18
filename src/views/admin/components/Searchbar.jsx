@@ -57,8 +57,8 @@ export default function SearchAppBar(props) {
 
 
       <ButtonGroup variant="text" aria-label="text button group" fullWidth>
-        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
-        <Button sx={{backgroundColor: "white", color: "black", borderRadius: 0}} component="a" href="/admin/fuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
+        <Button sx={{backgroundColor: "#5F9EA0", color: "black", borderRadius: 0}} component="a" href="/admin/viewAdmins" fullWidth>Admins</Button>
+        <Button sx={{backgroundColor: "#5F9EA0", color: "black", borderRadius: 0}} component="a" href="/admin/fuelStationManagerTable" fullWidth>Fuel Station Managers</Button>
       </ButtonGroup>
 
       <Box>

@@ -42,6 +42,14 @@ const getAllFSMDetails = (formData) => {
     });
 };
 
+const getAllUserDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAllUserDetails",
+        data: formData,
+    });
+};
+
 const updatePwd = (formData) => {
     return axios({
         method: "post",
@@ -66,6 +74,22 @@ const getAdminDetails = (formData) => {
     });
 }
 
+const getFSMCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFSMCount",
+        data: formData,
+    });
+}
+
+const getCustomerCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getCustomerCount",
+        data: formData,
+    });
+}
+
 export {
     getUserName,
     isEmailRegistered,
@@ -74,5 +98,8 @@ export {
     getAllFSMDetails,
     updatePwd,
     getFSMDetails,
-    getAdminDetails
+    getAdminDetails,
+    getAllUserDetails,
+    getFSMCount,
+    getCustomerCount
 };

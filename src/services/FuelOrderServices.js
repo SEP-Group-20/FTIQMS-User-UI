@@ -42,4 +42,20 @@ const registerFuelDelivery = (formData) => {
     });
 };
 
-export {isFuelDeliveryRegistered, isFuelOrderReal, getFuelOrderDetailsMFE, getFuelOrderDetails, registerFuelDelivery};
+const getFuelOrderCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getOrderCount",
+        data: formData,
+    });
+};
+
+const getRecentFuelOrders = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getRecentFuelOrders",
+        data: formData,
+    });
+};
+
+export {isFuelDeliveryRegistered, isFuelOrderReal, getFuelOrderDetailsMFE, getFuelOrderDetails, registerFuelDelivery, getFuelOrderCount, getRecentFuelOrders};

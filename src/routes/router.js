@@ -24,6 +24,7 @@ import FuelAmountSetter from "../views/fuelStationManager/components/FuelAmountS
 import FSMDetails from "../views/fuelStationManager/FSMViewAccount";
 import ViewAdminDetails from "../views/admin/ViewAdminDetails";
 
+
 export function Router() {
   return (
     <BrowserRouter>
@@ -49,6 +50,7 @@ export function Router() {
         <Route path='/admin/viewAdmins' element={<RequireAuth allowedRoles={[ADMIN]}><ViewAdmins /></RequireAuth>} />
         <Route path='/admin/fuelStationManagerTable' element={<RequireAuth allowedRoles={[ADMIN]}><ViewFSM /></RequireAuth>} />
         <Route path='/admin/viewAccountDetails' element={<RequireAuth allowedRoles={[ADMIN]}><ViewAdminDetails /></RequireAuth>} />
+       
 
         <Route exact path='contact' element={<Contact />} />
         <Route exact path='unauthorized' element={<Unauthorized />} />
