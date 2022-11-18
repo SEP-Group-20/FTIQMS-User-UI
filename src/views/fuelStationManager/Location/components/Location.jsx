@@ -21,7 +21,7 @@ const SRI_LANKA = {
 
 function Location({ initPhase }) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDiHGf2cG7mFOUa4-2AXbY4-teME8pfK8Y",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
   });
 
   const { auth } = useAuth();
@@ -115,7 +115,7 @@ function Location({ initPhase }) {
         <>
           {!initPhase && (
             <Button
-              sx={{ width: "50%"}}
+              sx={{ width: "50%" }}
               variant="contained"
               color="error"
               onClick={handleCancel}

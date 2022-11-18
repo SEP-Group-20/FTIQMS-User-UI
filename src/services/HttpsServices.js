@@ -7,7 +7,7 @@ let bearer_token = Token.getAccessToken();
 
 const axiosInstance = Axios.create({
     withCredentials: true,
-    baseURL: config.DOMAIN_NAME,
+    baseURL: process.env.REACT_APP_SERVER_DOMAIN_NAME,
     headers: { Authorization: `Bearer ${bearer_token}` }
 });
 
