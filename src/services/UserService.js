@@ -42,6 +42,14 @@ const getAllFSMDetails = (formData) => {
     });
 };
 
+const getAllUserDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAllUserDetails",
+        data: formData,
+    });
+};
+
 const updatePwd = (formData) => {
     return axios({
         method: "post",
@@ -49,6 +57,40 @@ const updatePwd = (formData) => {
         data: formData
     });
 };
+
+
+const getFSMDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFSMDetails",
+        data: formData,
+    });
+}
+
+const getAdminDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAdminDetails",
+        data: formData,
+    });
+}
+
+const getFSMCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFSMCount",
+        data: formData,
+    });
+}
+
+const getCustomerCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getCustomerCount",
+        data: formData,
+    });
+}
+
 
 const resetFSMPassword = (formData) => {
     return axios({
@@ -65,6 +107,7 @@ const resetUserPwd = (formData) => {
         data: formData,
     });
 };
+
 export {
     getUserName,
     isEmailRegistered,
@@ -72,6 +115,12 @@ export {
     getAllAdminDetails,
     getAllFSMDetails,
     updatePwd,
+    getFSMDetails,
+    getAdminDetails,
+    getAllUserDetails,
+    getFSMCount,
+    getCustomerCount,
     resetFSMPassword,
     resetUserPwd
+
 };

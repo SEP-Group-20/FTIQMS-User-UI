@@ -22,7 +22,7 @@ export default function BasicTable() {
   const [FSMDetials, setFSMDetails] = useState([])
   const [errMsg, setErrMsg] = useState("");
 
-  const {auth} = useAuth();
+  const {auth,userData} = useAuth();
 
   const userEmail = auth().user.email;
 
@@ -43,8 +43,8 @@ export default function BasicTable() {
   const rows = [];
 
   FSMDetials.forEach((FSM) => {
-    const {email, firstName, lastName, mobile, password} = FSM
-    rows.push(createData(email, firstName, lastName, mobile, password))
+    const {email, firstName, lastName, mobile, password, fuelStation} = FSM
+    rows.push(createData(email, firstName, lastName, mobile, password, fuelStation))
   });
 
   const handleClick = (value) =>{
@@ -71,18 +71,24 @@ export default function BasicTable() {
             
             <TableCell align='center'>Email</TableCell>
             <TableCell align='center'>Name</TableCell>
-            <TableCell align='center'>View Detais</TableCell>
+            <TableCell align='center'>Fuel Station</TableCell>
+            <TableCell align='center'>View Details</TableCell>
             
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow 
+          {rows.map((row) => {
+            var n = row.firstName+" "+row.lastName
+            if(!n.includes(userData) && userData){
+              return null
+            }
+            return <TableRow 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
               key={row.OrderId}
             >
               <TableCell align='center'>{row.email}</TableCell>
               <TableCell align='center'>{row.firstName+" "+row.lastName}</TableCell>
+              <TableCell align='center'>{row.fuelStation}</TableCell>
               <TableCell  align='center'> 
                 <Button variant="contained" onClick={()=>{handleClick(row)}}>
                   View
@@ -90,7 +96,7 @@ export default function BasicTable() {
               </TableCell>
               
             </TableRow>
-          ))}
+})}
         </TableBody>
       </Table>
     </TableContainer>}

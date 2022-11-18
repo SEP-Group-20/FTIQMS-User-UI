@@ -113,6 +113,16 @@ const resetFSSPassword = (formData) => {
     });
 };
 
+const getFuelStationCount = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getFuelStationCount",
+        data: formData,
+    });
+};
+
+
+
 export {
     isFuelStationRegistered,
     isFuelStationReal,
@@ -126,6 +136,8 @@ export {
     getFuelStationLocation,
     setFuelStationLocation,
     setInitalFuelStat,
+    getFuelStationCount,
     getDashboardDetails,
     resetFSSPassword
+
 };

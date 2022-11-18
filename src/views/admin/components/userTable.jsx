@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,56 +8,65 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
-import { getAllAdminDetails } from '../../../services/UserService';
+import { getAllUserDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
+import FSMDetails from '../FSMDetails';
 import AdminDetails from './AdminDetails';
 
-function createData(email, firstName, lastName, mobile, password) {
-  return {email, firstName, lastName, mobile, password};
+
+function createData(email, firstName, lastName, mobile, password, role) {
+  return {email, firstName, lastName, mobile, password, role};
 }
 
-export default function BasicTable(props) {
+function defineRole(value){
+    if(value === 5001)
+        return "Admin" ;
+    else 
+        return "Fuel Station Manager";
+    
+}
+
+export default function UserTable() {
   const [dataview, setDataView] = useState(false)
   const [itemdata, setItemData] = useState({})
-  const [adminDetials, setAdminDetails] = useState([])
+  const [UserDetials, setUserDetails] = useState([])
   const [errMsg, setErrMsg] = useState("");
 
-
-  const {auth, userData} = useAuth();
+  const {auth,userData} = useAuth();
 
   const userEmail = auth().user.email;
 
-  // get details of all the registered admins of the system
+  // get details of all the registered fuel station managers of the system
   useEffect(() => {
-    async function fetchAllAdminDetails() {
-      const allAdminDetails = await getAllAdminDetails({userEmail: userEmail});
+    async function fetchAllUserDetails() {
+      const allUserDetails = await getAllUserDetails({userEmail: userEmail});
+       
       
-      if (allAdminDetails.data.success)
-        setAdminDetails(allAdminDetails.data.allAdminDetails);
+      if (allUserDetails.data.success)
+        setUserDetails(allUserDetails.data.allUserDetails);
       else
         setErrMsg("Fuel delivery details retrival failed!");
     }
 
-    fetchAllAdminDetails();
+    fetchAllUserDetails();
   }, [userEmail]);
 
   const rows = [];
 
-  adminDetials.forEach((admin) => {
-    const {email, firstName, lastName, mobile, password} = admin
-    rows.push(createData(email, firstName, lastName, mobile, password))
+  UserDetials.forEach((User) => {
+    const {email, firstName, lastName, mobile, password, role} = User
+    rows.push(createData(email, firstName, lastName, mobile, password, role))
   });
 
   const handleClick = (value) =>{
     setItemData(value)
     setDataView(true)
   };
-
   
   return (
     <Box bgcolor="#d1cebd" flex={2} p={2}>
       <Typography variant='h2' sx={{ display: "flex", justifyContent: "center", paddingBottom:2}}>
-        System Admins
+        System Users
       </Typography>
       {!dataview &&  
       <TableContainer component={Paper} sx={{
@@ -67,13 +76,14 @@ export default function BasicTable(props) {
         boxShadow: '0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 )',
         borderRadius:'10px'
       }}>
-      <Table sx={{ width:'100%' }} aria-label="simple table">
+      <Table sx={{ width:'100%', }} aria-label="simple table">
         <TableHead>
           <TableRow>
             
             <TableCell align='center'>Email</TableCell>
             <TableCell align='center'>Name</TableCell>
-            <TableCell align='center'>View Details</TableCell>
+            <TableCell align='center'>UserType</TableCell>
+            <TableCell align='center'>View Detais</TableCell>
             
           </TableRow>
         </TableHead>
@@ -85,10 +95,12 @@ export default function BasicTable(props) {
             }
             return <TableRow 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } } }
-              key={row.orderID}
+              key={row.OrderId}
             >
               <TableCell align='center'>{row.email}</TableCell>
               <TableCell align='center'>{row.firstName+" "+row.lastName}</TableCell>
+              <TableCell align='center'>
+                {defineRole(row.role)}</TableCell>
               <TableCell  align='center'> 
                 <Button variant="contained" onClick={()=>{handleClick(row)}}>
                   View
@@ -96,12 +108,11 @@ export default function BasicTable(props) {
               </TableCell>
               
             </TableRow>
-          })}
+})}
         </TableBody>
       </Table>
     </TableContainer>}
-    {dataview && <AdminDetails userData={itemdata}/>}
+    {dataview && <FSMDetails userData={itemdata}/>}
   </Box>
   );
 }
-
