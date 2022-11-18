@@ -108,6 +108,22 @@ const resetUserPwd = (formData) => {
     });
 };
 
+const getAdminAccountDetails = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/getAdminAccountDetails",
+        data: formData,
+    });
+}
+
+const resetAdminPassword = (formData) => {
+    return axios({
+        method: "post",
+        url: APIEndPoint + "/resetAdminPassword",
+        data: formData,
+    });
+}
+
 export {
     getUserName,
     isEmailRegistered,
@@ -121,6 +137,7 @@ export {
     getFSMCount,
     getCustomerCount,
     resetFSMPassword,
-    resetUserPwd
-
+    resetUserPwd,
+    getAdminAccountDetails,
+    resetAdminPassword
 };

@@ -100,7 +100,7 @@ const Navbar = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem component="a" href="#">
+        <MenuItem component="a" href="/admin/viewAccountDetails">
           Profile
         </MenuItem>
         <MenuItem component="a" onClick={logoutUser}>
