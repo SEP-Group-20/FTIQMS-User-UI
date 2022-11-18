@@ -5,12 +5,15 @@ import { AuthProvider } from './utils/auth';
 
 function App() {
 
+
   return (
-    <div>
-      <AuthProvider>
-        <Router/>
-      </AuthProvider>
-    </div>
+   
+        <div>
+          <AuthProvider>
+            <Router/>
+          </AuthProvider>
+        </div>
+  
   );
 }
 

@@ -89,7 +89,7 @@ const Sidebar = () => {
                 <ListItemIcon>
                   <AccountBox />
                 </ListItemIcon>
-                <ListItemText primary="Account" />
+                <ListItemText primary="View Account" />
               </ListItemButton>
             </ListItem>
           </List>

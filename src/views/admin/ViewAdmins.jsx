@@ -5,7 +5,7 @@ import { Box, Stack } from '@mui/system';
 import AdminsTable from './components/AdminsTable';
 import Searchbar from './components/Searchbar'
 
-const viewAdmins = () => {
+const viewAdmins = (props) => {
   return (
     <Box display="flex" flexDirection="column" sx={{minHeight: '100vh'}}>
       <Navbar/>
@@ -13,7 +13,7 @@ const viewAdmins = () => {
         <Sidebar />
         <Stack direction="column" justifyContent="space-between" flex={1} overflow="auto">
           <Searchbar/>
-          <AdminsTable/>
+          <AdminsTable />
         </Stack>
       </Stack>
     </Box>
