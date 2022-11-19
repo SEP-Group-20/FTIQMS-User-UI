@@ -103,7 +103,6 @@ useEffect(() => {
                     <StatBox 
                         title = {fsCount[0]? fsCount[0].fs_count : 0}
                         subtitle= "Fuel Stations"
-                        increase = "+14%"
                         icon={
                             <EvStationOutlinedIcon 
                             sx={{color: colors.greenAccent[600], fontSize: "26px"}}
@@ -121,7 +120,6 @@ useEffect(() => {
                     <StatBox 
                         title = {fsmCount[0]? fsmCount[0].fsm_count:0}
                         subtitle= "Fuel Station Managers"
-                        increase = "+10%"
                         icon={
                             <SupervisedUserCircleOutlinedIcon
                             sx={{color: colors.greenAccent[600], fontSize: "26px"}}
@@ -139,7 +137,6 @@ useEffect(() => {
                     <StatBox 
                         title = {customerCount[0]? customerCount[0].customer_count:0}
                         subtitle= "Customers"
-                        increase = "+60%"
                         icon={
                             <PermIdentityOutlinedIcon
                             sx={{color: colors.greenAccent[600], fontSize: "26px"}}
@@ -157,7 +154,6 @@ useEffect(() => {
                     <StatBox 
                         title = {fuelOrderCount[0]? fuelOrderCount[0].order_count:0}
                         subtitle= "Fuel Orders"
-                        increase = "+9%"
                         icon={
                             <LocalShippingOutlinedIcon
                             sx={{color: colors.greenAccent[600], fontSize: "26px"}}
