@@ -12,8 +12,8 @@ import { getAllFSMDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
 import FSMDetails from '../FSMDetails';
 
-function createData(email, firstName, lastName, mobile, password) {
-  return {email, firstName, lastName, mobile, password};
+function createData(email, firstName, lastName, mobile, password, fuelStation) {
+  return {email, firstName, lastName, mobile, password, fuelStation};
 }
 
 export default function BasicTable() {
