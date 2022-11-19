@@ -1,7 +1,7 @@
 import {Box,Typography, useTheme} from "@mui/material";
 import { tokens } from "../components/theme";
 
-const StatBox = ({title,subtitle, icon, increase}) => {
+const StatBox = ({title,subtitle, icon}) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.colors);
 
@@ -32,7 +32,6 @@ const StatBox = ({title,subtitle, icon, increase}) => {
                     variant = "h6"
                     fontWeight= "italic"
                     sx = {{color : colors.greenAccent[600]}}>
-                    {increase}
                 </Typography>
                 </Box>
            
