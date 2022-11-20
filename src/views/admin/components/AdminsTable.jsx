@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import { Box, Typography } from '@mui/material';
 import { getAllAdminDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
-import AdminDetails from './AdminDetails';
+import AdminViewAdminDetails from './AdminViewAdminDetails';
 
 function createData(email, firstName, lastName, mobile, password) {
   return {email, firstName, lastName, mobile, password};
@@ -100,7 +100,7 @@ export default function BasicTable(props) {
         </TableBody>
       </Table>
     </TableContainer>}
-    {dataview && <AdminDetails userData={itemdata}/>}
+    {dataview && <AdminViewAdminDetails userData={itemdata}/>}
   </Box>
   );
 }
