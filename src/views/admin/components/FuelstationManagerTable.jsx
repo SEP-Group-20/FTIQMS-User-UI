@@ -43,8 +43,8 @@ export default function BasicTable() {
   const rows = [];
 
   FSMDetials.forEach((FSM) => {
-    const {email, firstName, lastName, mobile, password, fuelStation} = FSM
-    rows.push(createData(email, firstName, lastName, mobile, password, fuelStation))
+    const {email, firstName, lastName, mobile, password, fuelStation} = FSM;
+    rows.push(createData(email, firstName, lastName, mobile, password, fuelStation[0].name))
   });
 
   const handleClick = (value) =>{

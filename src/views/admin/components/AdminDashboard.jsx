@@ -211,7 +211,7 @@ useEffect(() => {
                                     {order.orderDate.split("T")[0]}
                                 </Box>
                                 <Box backgroundColor = {colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                                    ${order.value}
+                                    Rs. {order.value}
                                 </Box>
                         </Box>
 

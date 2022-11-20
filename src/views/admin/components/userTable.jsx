@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material';
 import { getAllUserDetails } from '../../../services/UserService';
 import { useAuth } from '../../../utils/auth';
 import FSMDetails from '../FSMDetails';
-import AdminDetails from './AdminDetails';
+import AdminViewAdminDetails from './AdminViewAdminDetails';
 
 
 function createData(email, firstName, lastName, mobile, password, role) {
@@ -108,11 +108,12 @@ export default function UserTable() {
               </TableCell>
               
             </TableRow>
-})}
+          })}
         </TableBody>
       </Table>
     </TableContainer>}
-    {dataview && <FSMDetails userData={itemdata}/>}
+    {dataview && itemdata.role === 5001 && <AdminViewAdminDetails userData={itemdata}/>}
+    {dataview && itemdata.role === 5002 && <FSMDetails userData={itemdata}/>}
   </Box>
   );
 }
